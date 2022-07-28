@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 4
+# MAGIC # Databricks Training Day - 3
 # MAGIC * Topic: How to Query an "Older Snapshot" of a "Delta Table" ("Time Travel")?
 # MAGIC * Author: Oindrila Chakraborty
 

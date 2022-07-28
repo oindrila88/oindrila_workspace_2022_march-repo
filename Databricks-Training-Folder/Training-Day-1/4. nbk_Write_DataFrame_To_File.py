@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 2
+# MAGIC # Databricks Training Day - 1
 # MAGIC * Topic: Read CSV File and Load the Data into a DataFrame. Perform Some Transformation on that DataFrame and Create New DataFrame. Write the New DataFrame into a File and Store into DBFS.
 # MAGIC * Author: Oindrila Chakraborty
 

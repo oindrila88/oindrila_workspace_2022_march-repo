@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 2
+# MAGIC # Databricks Training Day - 1
 # MAGIC * Topic: Read JSON File and Load the Data into a DataFrame with Different Options
 # MAGIC * Author: Oindrila Chakraborty
 

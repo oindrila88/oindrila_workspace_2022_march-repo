@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 3
+# MAGIC # Databricks Training Day - 1
 # MAGIC * Topic: How to Create the "Azure Key Vault-Backed Secret Scope"?
 # MAGIC * Author: Oindrila Chakraborty
 

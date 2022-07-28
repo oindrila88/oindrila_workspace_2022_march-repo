@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 4
+# MAGIC # Databricks Training Day - 3
 # MAGIC * Topic: How to Read "Delta Tables"?
 # MAGIC * Author: Oindrila Chakraborty
 
@@ -8,7 +8,7 @@
 
 # MAGIC %md
 # MAGIC # Reading Delta Tables
-# MAGIC * It is possible to "Load" a "Delta Table" as a "DataFrame" by specifying a "Table Name" or a "Path".
+# MAGIC * It is possible to "Read" a "Delta Table" as a "DataFrame" by specifying a "Table Name" or a "Path".
 # MAGIC * The "DataFrame" returned automatically "Reads" the "Most Recent Snapshot" of the "Delta Table" for any "Query". There is no need to run "REFRESH TABLE".
 # MAGIC * "Delta Lake" automatically uses "Partitioning" and "Statistics" to "Read" the "Minimum Amount" of "Data" when there are "Predicates" applicable in the "Query".
 

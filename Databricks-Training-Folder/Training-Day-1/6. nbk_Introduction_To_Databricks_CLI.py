@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 3
+# MAGIC # Databricks Training Day - 1
 # MAGIC * Topic: Introduction To "Databricks CLI".
 # MAGIC * Author: Oindrila Chakraborty
 

@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 4
+# MAGIC # Databricks Training Day - 1
 # MAGIC * Topic: How to Access Containers and Directories of ADLS from Databricks Using "Azure Key Vault-Backed Secret Scope" by "Mounting".
 # MAGIC * Author: Oindrila Chakraborty
 
