@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 3
+# MAGIC # Databricks Training Day - 2
 # MAGIC * Topic: How to "Create" and "Display" the Records of "Views" Using Spark SQL in Databricks.
 # MAGIC * Author: Oindrila Chakraborty
 

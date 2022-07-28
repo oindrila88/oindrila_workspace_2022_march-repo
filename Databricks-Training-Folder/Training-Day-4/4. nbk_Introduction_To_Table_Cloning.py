@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 5
+# MAGIC # Databricks Training Day - 4
 # MAGIC * Topic: Introduction to "Cloning" of a "Delta Table".
 # MAGIC * Author: Oindrila Chakraborty
 

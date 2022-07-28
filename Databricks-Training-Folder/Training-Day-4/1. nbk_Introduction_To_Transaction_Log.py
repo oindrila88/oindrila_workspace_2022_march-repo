@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 5
+# MAGIC # Databricks Training Day - 4
 # MAGIC * Topic: Introduction to "Transaction Logs" of "Delta Table".
 # MAGIC * Author: Oindrila Chakraborty
 

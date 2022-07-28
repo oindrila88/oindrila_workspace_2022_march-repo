@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 4
+# MAGIC # Databricks Training Day - 3
 # MAGIC * Topic: How to Retrieve the "History" of a "Delta Table"?
 # MAGIC * Author: Oindrila Chakraborty
 

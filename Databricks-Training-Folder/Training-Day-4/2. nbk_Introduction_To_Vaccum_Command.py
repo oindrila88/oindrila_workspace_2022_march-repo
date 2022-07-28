@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 5
+# MAGIC # Databricks Training Day - 4
 # MAGIC * Topic: Remove "Unused Data Files" that are "No Longer" referenced from a "Table Directory".
 # MAGIC * Author: Oindrila Chakraborty
 
