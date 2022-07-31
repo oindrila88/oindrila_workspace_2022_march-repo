@@ -10,6 +10,7 @@
 # MAGIC # Update Data of a Delta Table
 # MAGIC * It is possible to "Update" the "Column Values" for the "Rows" of a "Delta Table" that "Matches" a "Predicate".
 # MAGIC * When "No Predicate" is Provided, the "Column Values" for "All" the "Rows" are "Updated".
+# MAGIC * When possible, it is best to Provide the "Predicates" on the "Partition Columns" for a "Partitioned Delta Table", because the "Predicates" can Significantly "Speed Up" the "Update Operation".
 
 # COMMAND ----------
 
