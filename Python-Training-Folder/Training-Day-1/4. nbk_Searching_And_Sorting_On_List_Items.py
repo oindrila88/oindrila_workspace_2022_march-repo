@@ -21,8 +21,7 @@ print(ifExists)
 
 # COMMAND ----------
 
-# "Verify" if the Item "Was" actually "Doesn't Exist" in the "Heterogeneous List" of Multiple "Objects" of "Different"
-# "Data Types".
+# "Verify" if the Item "Was" actually "Doesn't Exist" in the "Heterogeneous List" of Multiple "Objects" of "Different" "Data Types".
 listOfDifferentTypes = ['Hi!', 22, 'Is', "It", 3.56, True]
 ifDoesNotExist = "Was" not in listOfDifferentTypes
 print(ifDoesNotExist)
@@ -49,8 +48,7 @@ print("First Ocurring Index Position of 88 : ", indexPosition)
 # COMMAND ----------
 
 # Not possible to "Find" an "Item" that is "Not Present" in a "List".
-# Trying to "Find" the Item "2.8" from the "Heterogeneous List" of Multiple "Objects" of "Different" "Data Types" will Throw
-# "ValueError".
+# Trying to "Find" the Item "2.8" from the "Heterogeneous List" of Multiple "Objects" of "Different" "Data Types" will Throw "ValueError".
 listOfDifferentTypes = ['Hi!', 22, 'Is', 22, "It", 3.56, True, 22]
 indexPosition = listOfDifferentTypes.remove(2.8)
 print("First Ocurring Index Position of 2.8 : ", indexPosition)
@@ -103,16 +101,14 @@ print(minValue)
 # Create an "Empty List".
 emptyList = []
 
-# To "Avoid" the "ValueError" When Trying to "Find" the "Smallest Value" in an "Empty List", "Assign" a "Default Value" to the
-# "List", inside the Python Built-In Function "min ()".
+# To "Avoid" the "ValueError" When Trying to "Find" the "Smallest Value" in an "Empty List", "Assign" a "Default Value" to the "List", inside the Python Built-In Function "min ()".
 minValue = min(emptyList, default = 2)
 print(minValue)
 
 # COMMAND ----------
 
 # Not possible to "Find" the "Smallest Value" in a "Heterogeneous List".
-# Trying to "Find" the "Smallest Value" from the "Heterogeneous List" of Multiple "Objects" of "Different" "Data Types" will
-# Throw "TypeError".
+# Trying to "Find" the "Smallest Value" from the "Heterogeneous List" of Multiple "Objects" of "Different" "Data Types" will Throw "TypeError".
 listOfDifferentTypes = ['Hi!', 22, 'Is', 22, "It", 3.56, True, 22]
 minValue = min(listOfDifferentTypes)
 print("The Smallest Item : ", minValue)
@@ -172,16 +168,14 @@ print(maxValue)
 # Create an "Empty List".
 emptyList = []
 
-# To "Avoid" the "ValueError" When Trying to "Find" the "Largest Value" in an "Empty List", "Assign" a "Default Value" to the
-# "List", inside the Python Built-In Function "max ()".
+# To "Avoid" the "ValueError" When Trying to "Find" the "Largest Value" in an "Empty List", "Assign" a "Default Value" to the "List", inside the Python Built-In Function "max ()".
 maxValue = max(emptyList, default = 2)
 print(maxValue)
 
 # COMMAND ----------
 
 # Not possible to "Find" the "Largest Value" in a "Heterogeneous List".
-# Trying to "Find" the "Largest Value" from the "Heterogeneous List" of Multiple "Objects" of "Different" "Data Types" will
-# Throw "TypeError".
+# Trying to "Find" the "Largest Value" from the "Heterogeneous List" of Multiple "Objects" of "Different" "Data Types" will Throw "TypeError".
 listOfDifferentTypes = ['Hi!', 22, 'Is', 22, "It", 3.56, True, 22]
 maxValue = max(listOfDifferentTypes)
 print("The Largest Item : ", maxValue)
@@ -400,8 +394,7 @@ print(nestedListOfInts)
 # COMMAND ----------
 
 # Not possible to "Sort" "All" the "Items" in a "Heterogeneous List".
-# Trying to "Sort" "All" the "Items" from the "Heterogeneous List" of Multiple "Objects" of "Different" "Data Types" will
-# Throw "TypeError".
+# Trying to "Sort" "All" the "Items" from the "Heterogeneous List" of Multiple "Objects" of "Different" "Data Types" will Throw "TypeError".
 listOfDifferentTypes = ['Hi!', 22, 'Is', 22, "It", 3.56, True, 22]
 listOfDifferentTypes.sort()
 print(listOfDifferentTypes)
@@ -454,8 +447,7 @@ lengthOfList = len()
 # Create a "List" of "Strings".
 listOfStrings = ['My', 'Name', 'is', 'Oindrila', 'Chakraborty', 'Bagchi']
 
-# "Sort" the "Values" of "All" the "Elements" in the "List" of "Strings" in the "Descending Order" of the "Length" of "Each
-# Item".
+# "Sort" the "Values" of "All" the "Elements" in the "List" of "Strings" in the "Descending Order" of the "Length" of "Each Item".
 listOfStrings.sort(key = len, reverse = True)
 print(listOfStrings)
 
@@ -501,8 +493,7 @@ print(sortedNestedListOfInts)
 # COMMAND ----------
 
 # Not possible to "Sort" "All" the "Items" in a "Heterogeneous List".
-# Trying to "Sort" "All" the "Items" from the "Heterogeneous List" of Multiple "Objects" of "Different" "Data Types" will
-# Throw "TypeError".
+# Trying to "Sort" "All" the "Items" from the "Heterogeneous List" of Multiple "Objects" of "Different" "Data Types" will Throw "TypeError".
 listOfDifferentTypes = ['Hi!', 22, 'Is', 22, "It", 3.56, True, 22]
 sortedListOfDifferentTypes = sorted(listOfDifferentTypes)
 print(sortedListOfDifferentTypes)
@@ -548,7 +539,6 @@ print(sortedListOfStrings)
 # Create a "List" of "Strings".
 listOfStrings = ['My', 'Name', 'is', 'Oindrila', 'Chakraborty', 'Bagchi']
 
-# "Sort" the "Values" of "All" the "Elements" in the "List" of "Strings" in the "Descending Order" of the "Length" of "Each
-# Item".
+# "Sort" the "Values" of "All" the "Elements" in the "List" of "Strings" in the "Descending Order" of the "Length" of "Each Item".
 sortedListOfStrings = sorted(listOfStrings, key = len, reverse = True)
 print(sortedListOfStrings)

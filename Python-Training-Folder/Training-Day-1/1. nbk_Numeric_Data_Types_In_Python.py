@@ -4,8 +4,7 @@
 
 # COMMAND ----------
 
-# By default, "Jupyter Notebook" Displays Only the "Last Statement" written in the Notebook. Hence, it is not possible to
-# Display Multiple Values in One Cell.
+# By default, "Jupyter Notebook" Displays Only the "Last Statement" written in the Notebook. Hence, it is not possible to Display Multiple Values in One Cell.
 6
 10
 

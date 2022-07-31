@@ -244,8 +244,7 @@ print(type(nestedListOfDifferentTypes))
 
 # COMMAND ----------
 
-# Create a "List" of "Integers" of Numbers between "70" and "79".
-# "79" will be "Excluded" in the "Output".
+# Create a "List" of "Integers" of Numbers between "70" and "79". "79" will be "Excluded" in the "Output".
 listOfInts = [number for number in range(70, 79)]
 print(listOfInts)
 print(type(listOfInts))
@@ -257,8 +256,7 @@ print(type(listOfInts))
 
 # COMMAND ----------
 
-# Create a "List" of "Strings", where "Each Element" would be the "First Letter" of "Every Element" of the List
-# "listOfCountries".
+# Create a "List" of "Strings", where "Each Element" would be the "First Letter" of "Every Element" of the List "listOfCountries".
 listOfCountries = ['India', "Japan", 'South Korea', "Thailand", 'Vietnam', "Indonesia"]
 print(listOfCountries)
 print(type(listOfCountries))
@@ -372,12 +370,10 @@ print(nestedListOfDifferentTypes[-3][-2])
 
 listOfDifferentTypes = [2, 5.6, 'Is', "It", 17, True, 2, 'S', False]
 
-# Access the "Items" from the "First Item" till the "Fifth Item" present at the Index Position "4" of the List
-# "listOfDifferentTypes".
+# Access the "Items" from the "First Item" till the "Fifth Item" present at the Index Position "4" of the List "listOfDifferentTypes".
 print(listOfDifferentTypes[:4])
 
-# Access the "Items" from the "Third Item" present at the Index Position "2" till the "Last Item" of the List
-# "listOfDifferentTypes".
+# Access the "Items" from the "Third Item" present at the Index Position "2" till the "Last Item" of the List "listOfDifferentTypes".
 print(listOfDifferentTypes[2:])
 
 # COMMAND ----------
@@ -386,39 +382,31 @@ listOfInts = [2, 9, 88, 17, 2, 88, 93, 54, 88]
 
 # -----------------------------------------------------------------------------------------------------------------------------
 
-# "Display" from the "Second Item" at Index Position "1", till the "Fifth Item" at Index Position "4".
-# The "Fifth Item" at Index Position "4" would be "Excluded" in the "Output".
+# "Display" from the "Second Item" at Index Position "1", till the "Fifth Item" at Index Position "4". The "Fifth Item" at Index Position "4" would be "Excluded" in the "Output".
 print(listOfInts[1:4])
 
 # -----------------------------------------------------------------------------------------------------------------------------
 
-# If the "Index Position", mentioned as the "End" of the "Slicing" Does "Not Exist" in the "List", then the "Items", from the
-# "Index Position", mentioned as the "Start" of the "Slicing", till the "Last Item" of the "List" are "Displayed".
+# If the "Index Position", mentioned as the "End" of the "Slicing" Does "Not Exist" in the "List", then the "Items", from the "Index Position", mentioned as the "Start" of the "Slicing", till the "Last Item" of the "List" are "Displayed".
 print(listOfInts[1:10])
 
 # -----------------------------------------------------------------------------------------------------------------------------
 
-# To "Display" the "Items" from an "Index Position", mentioned as the "Start" of the "Slicing" till the "Last Item" of a
-# "List", i.e., Including the "Last Item", no "Index Position" Should be Provided as the "End" of the "Slicing". The "End"
-# Should be Kept as "Blank".
+# To "Display" the "Items" from an "Index Position", mentioned as the "Start" of the "Slicing" till the "Last Item" of a "List", i.e., Including the "Last Item", no "Index Position" Should be Provided as the "End" of the "Slicing". The "End" Should be Kept as "Blank".
 
 # "Display" from the "Fourth Item" at Index Position "3", till the "Last Item" of the "List".
 print(listOfInts[3:])
 
 # -----------------------------------------------------------------------------------------------------------------------------
 
-# To "Display" from the "First Item" of a "List" till the "Index Position", mentioned as the "End" of the "Slicing" of a
-# "List", i.e., Excluding the "Item" Present at the "Index Position" mentioned as the "End" of the "Slicing", no "Index
-# Position" Should be Provided as the "Start" of the "Slicing". The "Start" Should be Kept as "Blank".
+# To "Display" from the "First Item" of a "List" till the "Index Position", mentioned as the "End" of the "Slicing" of a "List", i.e., Excluding the "Item" Present at the "Index Position" mentioned as the "End" of the "Slicing", no "Index Position" Should be Provided as the "Start" of the "Slicing". The "Start" Should be Kept as "Blank".
 
-# "Display" from the "First Item" of the "List", till the "Fifth Item" at Index Position "4".
-# The "Fifth Item" at Index Position "4" would be "Excluded" in the "Output".
+# "Display" from the "First Item" of the "List", till the "Fifth Item" at Index Position "4". The "Fifth Item" at Index Position "4" would be "Excluded" in the "Output".
 print(listOfInts[:4])
 
 # -----------------------------------------------------------------------------------------------------------------------------
 
-# To "Display" "All" the "Items" of a "List" using "List Slicing", no "Index Position" Should be Provided "Both" as the
-# "Start" and "End" of the "Slicing". Both the "Start" and "End" Should be Kept as "Blank".
+# To "Display" "All" the "Items" of a "List" using "List Slicing", no "Index Position" Should be Provided "Both" as the "Start" and "End" of the "Slicing". Both the "Start" and "End" Should be Kept as "Blank".
 print(listOfInts[:])
 
 # COMMAND ----------
@@ -431,12 +419,10 @@ print(listOfInts[:])
 
 listOfDifferentTypes = [2, 5.6, 'Is', "It", 17, True, 2, 'S', False]
 
-# Access Every "Second Item" from the "Second Item" present at the Index Position "1" till the "Eighth Item" present at the
-# Index Position "7" of the List "listOfDifferentTypes".
+# Access Every "Second Item" from the "Second Item" present at the Index Position "1" till the "Eighth Item" present at the Index Position "7" of the List "listOfDifferentTypes".
 print(listOfDifferentTypes[1:7:2])
 
-# Access Every "Second Item" from the "Second Last Item" present at the Index Position "-2" till the "Eighth Last Item"
-# present at the Index Position "-8" of the List "listOfDifferentTypes".
+# Access Every "Second Item" from the "Second Last Item" present at the Index Position "-2" till the "Eighth Last Item" present at the Index Position "-8" of the List "listOfDifferentTypes".
 print(listOfDifferentTypes[-2:-8:-2])
 
 # COMMAND ----------
@@ -472,8 +458,7 @@ print(listOfDifferentTypes)
 
 listOfInts = [2, 9, 88, 17, 2, 88, 93, 54, 88]
 
-# Here, the "Number of Elements" to "Assign" in the "List", i.e., "4" is "Greater Than" the "Summation" of the "Index Positions"
-# , mentioned in the "Slicing", i.e., "2". Hence, the "List" got "Expanded".
+# Here, the "Number of Elements" to "Assign" in the "List", i.e., "4" is "Greater Than" the "Summation" of the "Index Positions", mentioned in the "Slicing", i.e., "2". Hence, the "List" got "Expanded".
 
 listOfInts[1:3] = [93, 14, 8, 9]
 print(listOfInts)
@@ -483,8 +468,7 @@ print(listOfInts)
 # Create a "List" of "Integers".
 listOfInts = [2, 9, 88, 17, 2, 88, 93, 54, 88]
 
-# Here, the "Number of Elements" to "Assign" in the "List", i.e., "2" is "Less Than" the "Summation" of the "Index Positions"
-# , mentioned in the "Slicing", i.e., "3". Hence, the "List" got "Shrunk".
+# Here, the "Number of Elements" to "Assign" in the "List", i.e., "2" is "Less Than" the "Summation" of the "Index Positions", mentioned in the "Slicing", i.e., "3". Hence, the "List" got "Shrunk".
 
 listOfInts[1:4] = [93, 14]
 print(listOfInts)
@@ -540,8 +524,7 @@ print(listOfDifferentTypes)
 
 # COMMAND ----------
 
-# "Append" another "List" Value "['My', 'Name', 'is', 'Oindrila', 'Chakraborty', 'Bagchi']" to the "End" of the "List" of
-# Multiple "Objects" of "Different" "Data Types".
+# "Append" another "List" Value "['My', 'Name', 'is', 'Oindrila', 'Chakraborty', 'Bagchi']" to the "End" of the "List" of Multiple "Objects" of "Different" "Data Types".
 listOfDifferentTypes = ['Hi!', 22, 'Is', "It", 3.56, True]
 listOfStrings = ['My', 'Name', 'is', 'Oindrila', 'Chakraborty', 'Bagchi']
 listOfDifferentTypes.append(listOfStrings)
@@ -579,8 +562,7 @@ print(listOfDifferentTypes)
 
 # COMMAND ----------
 
-# "Append" "All" the "Items" of another "Nested List" to the "End" of the "List" of Multiple "Objects" of "Different" "Data
-# Types".
+# "Append" "All" the "Items" of another "Nested List" to the "End" of the "List" of Multiple "Objects" of "Different" "Data Types".
 listOfDifferentTypes = ['Hi!', 22, 'Is', "It", 3.56, True]
 nestedListOfDifferentTypes = list([
                                     ['Oindrila', 30, 5.7],
@@ -688,16 +670,14 @@ print(result)
 
 # COMMAND ----------
 
-# "Insert" a Boolean Value "False" at the "Third Position", i.e., at the Index Position "2" of the "List" of Multiple "Objects"
-# of "Different" "Data Types".
+# "Insert" a Boolean Value "False" at the "Third Position", i.e., at the Index Position "2" of the "List" of Multiple "Objects" of "Different" "Data Types".
 listOfDifferentTypes = ['Hi!', 22, 'Is', "It", 3.56, True]
 listOfDifferentTypes.insert(2, False)
 print(listOfDifferentTypes)
 
 # COMMAND ----------
 
-# "Insert" another "List" Value "['My', 'Name', 'is', 'Oindrila', 'Chakraborty', 'Bagchi']" at the "Third Position", i.e., at
-# the Index Position "2" of the "List" of Multiple "Objects" of "Different" "Data Types".
+# "Insert" another "List" Value "['My', 'Name', 'is', 'Oindrila', 'Chakraborty', 'Bagchi']" at the "Third Position", i.e., at the Index Position "2" of the "List" of Multiple "Objects" of "Different" "Data Types".
 listOfDifferentTypes = ['Hi!', 22, 'Is', "It", 3.56, True]
 listOfStrings = ['My', 'Name', 'is', 'Oindrila', 'Chakraborty', 'Bagchi']
 listOfDifferentTypes.insert(2, listOfStrings)
@@ -715,8 +695,7 @@ print(listOfDifferentTypes)
 
 # COMMAND ----------
 
-# "Create" a "Sub-List" from the "Second Item" at Index Position "1", till the "Fifth Item" at Index Position "4".
-# The "Fifth Item" at Index Position "4" would be "Excluded" in the "Output".
+# "Create" a "Sub-List" from the "Second Item" at Index Position "1", till the "Fifth Item" at Index Position "4". The "Fifth Item" at Index Position "4" would be "Excluded" in the "Output".
 listOfDifferentTypes = ['Hi!', 22, 'Is', "It", 3.56, True]
 result = listOfDifferentTypes[1:4]
 print(result)
@@ -740,8 +719,7 @@ print(listOfDifferentTypes)
 
 # COMMAND ----------
 
-# "Delete" the "Items" from the "Second Item" at Index Position "1", till the "Fifth Item" at Index Position "4".
-# The "Fifth Item" at Index Position "4" would "Not Be Deleted" in the "Output".
+# "Delete" the "Items" from the "Second Item" at Index Position "1", till the "Fifth Item" at Index Position "4". The "Fifth Item" at Index Position "4" would "Not Be Deleted" in the "Output".
 listOfDifferentTypes = ['Hi!', 22, 'Is', "It", 3.56, True]
 del listOfDifferentTypes[1:4]
 print(listOfDifferentTypes)
@@ -774,8 +752,7 @@ print(listOfDifferentTypes)
 # COMMAND ----------
 
 # Not possible to "Delete" an "Item" that is "Not Present" in a "List".
-# Trying to "Delete" the Item "2.8" from the "Heterogeneous List" of Multiple "Objects" of "Different" "Data Types" will Throw
-# "ValueError".
+# Trying to "Delete" the Item "2.8" from the "Heterogeneous List" of Multiple "Objects" of "Different" "Data Types" will Throw "ValueError".
 listOfDifferentTypes = ['Hi!', 22, 'Is', 22, "It", 3.56, True, 22]
 listOfDifferentTypes.remove(2.8)
 print(listOfDifferentTypes)
@@ -810,8 +787,7 @@ print("Updated List : ", listOfDifferentTypes)
 # COMMAND ----------
 
 # Not possible to Delete an "Index" that is beyond the "List Index Range".
-# Trying to "Delete" the Item, present at the Index Position "18" from the "Heterogeneous List" of Multiple "Objects" of
-# "Different" "Data Types" will Throw "IndexError".
+# Trying to "Delete" the Item, present at the Index Position "18" from the "Heterogeneous List" of Multiple "Objects" of "Different" "Data Types" will Throw "IndexError".
 listOfDifferentTypes = ['Hi!', 22, 'Is', 22, "It", 3.56, True, 22]
 deletedItem = listOfDifferentTypes.pop(18)
 print("Deleted Item : ", deletedItem)
@@ -847,8 +823,7 @@ print(listOfDifferentTypes)
 
 # COMMAND ----------
 
-# "Delete" the "Items" from the "Second Item" at Index Position "1", till the "Fifth Item" at Index Position "4".
-# The "Fifth Item" at Index Position "4" would "Not Be Deleted" in the "Output".
+# "Delete" the "Items" from the "Second Item" at Index Position "1", till the "Fifth Item" at Index Position "4". The "Fifth Item" at Index Position "4" would "Not Be Deleted" in the "Output".
 listOfDifferentTypes = ['Hi!', 22, 'Is', "It", 3.56, True]
 listOfDifferentTypes[1:4] = []
 print(listOfDifferentTypes)
@@ -899,26 +874,4 @@ listOfInts = [2, 9, 88, 17, 2, 88, 93, 54, 88]
 
 # "Reverse" the "Position" of "All" the "Elements" in the "List" of "Integers".
 listOfInts.reverse()
-print(listOfInts)
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC ## "Sort" the "Values" of "All" the "Elements" in a "List"
-
-# COMMAND ----------
-
-# Create a "List" of "Integers".
-listOfInts = [2, 9, 88, 17, 2, 88, 93, 54, 88]
-
-# "Sort" the "Values" of "All" the "Elements" in the "List" of "Integers".
-listOfInts.sort()
-print(listOfInts)
-
-# To "Sort" the "Values" of "All" the "Elements" in a "List" in "Descending" Order, the Parameter "reverse" is Passed with the
-# Value "True" to the "sort ()" Method.
-# Create a "List" of "Integers".
-listOfInts = [2, 9, 88, 17, 2, 88, 93, 54, 88]
-
-listOfInts.sort(reverse = True)
 print(listOfInts)

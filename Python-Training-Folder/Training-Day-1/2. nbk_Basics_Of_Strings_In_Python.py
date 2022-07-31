@@ -122,13 +122,11 @@ print(b)
 
 # COMMAND ----------
 
-# Assign the Variable "a" to the "String" Value "My Name is 'Oindrila Chakraborty Bagchi'." using "Single Quotes" with Escape
-# Sequence, i.e., Backslash "\".
+# Assign the Variable "a" to the "String" Value "My Name is 'Oindrila Chakraborty Bagchi'." using "Single Quotes" with Escape Sequence, i.e., Backslash "\".
 a = 'My Name is \'Oindrila Chakraborty Bagchi\'.'
 print(a)
 
-# Assign the Variable "b" to the he "String" Value "My Name is "Oindrila Chakraborty Bagchi"." using "Double Quotes" with Escape
-# Sequence, i.e., Backslash "\".
+# Assign the Variable "b" to the he "String" Value "My Name is "Oindrila Chakraborty Bagchi"." using "Double Quotes" with Escape Sequence, i.e., Backslash "\".
 b = "My Name is \"Oindrila Chakraborty Bagchi\"."
 print(b)
 
@@ -207,47 +205,38 @@ print(a[-14])
 
 # COMMAND ----------
 
-# It is possible to "Display" a "Sub-String" from a "String" using the "String Sciling" Technique. The "Character" of the
-# "String", which would be at the "Index Position", mentioned as the "End" of the "Slicing" would be "Excluded" in the "Output".
+# It is possible to "Display" a "Sub-String" from a "String" using the "String Sciling" Technique. The "Character" of the "String", which would be at the "Index Position", mentioned as the "End" of the "Slicing" would be "Excluded" in the "Output".
 
 # Assign the Variable "a" to the "String" Value "My Name is 'Oindrila Chakraborty Bagchi'." using "Triple Single Quotes".
 a = '''My Name is 'Oindrila Chakraborty Bagchi'.'''
 
 # -----------------------------------------------------------------------------------------------------------------------------
 
-# "Display" from the "Second Character" at Index Position "1", till the "Fifteenth Character" at Index Position "14".
-# The "Fifth Element" at Index Position "4" would be "Excluded" in the "Output".
+# "Display" from the "Second Character" at Index Position "1", till the "Fifteenth Character" at Index Position "14". The "Fifth Element" at Index Position "4" would be "Excluded" in the "Output".
 print(a[1:14])
 
 # -----------------------------------------------------------------------------------------------------------------------------
 
-# If the "Index Position", mentioned as the "End" of the "Slicing" Does "Not Exist" in the "String", then the "Characters", from
-# the "Index Position", mentioned as the "Start" of the "Slicing", till the "Last Character" of the "String" are "Displayed".
+# If the "Index Position", mentioned as the "End" of the "Slicing" Does "Not Exist" in the "String", then the "Characters", from the "Index Position", mentioned as the "Start" of the "Slicing", till the "Last Character" of the "String" are "Displayed".
 print(a[1:100])
 
 # -----------------------------------------------------------------------------------------------------------------------------
 
-# To "Display" the "Characters" from an "Index Position", mentioned as the "Start" of the "Slicing" till the "Last Character" of
-# a "String", i.e., Including the "Last Character", no "Index Position" Should be Provided as the "End" of the "Slicing". The
-# "End" Should be Kept as "Blank".
+# To "Display" the "Characters" from an "Index Position", mentioned as the "Start" of the "Slicing" till the "Last Character" of a "String", i.e., Including the "Last Character", no "Index Position" Should be Provided as the "End" of the "Slicing". The "End" Should be Kept as "Blank".
 
 # "Display" from the "Fourth Character" at Index Position "3", till the "Last Character" of the "String".
 print(a[3:])
 
 # -----------------------------------------------------------------------------------------------------------------------------
 
-# To "Display" from the "First Character" of a "String" till the "Index Position", mentioned as the "End" of the "Slicing" of a
-# "String", i.e., Excluding the "Character" Present at the "Index Position" mentioned as the "End" of the "Slicing", no "Index
-# Position" Should be Provided as the "Start" of the "Slicing". The "Start" Should be Kept as "Blank".
+# To "Display" from the "First Character" of a "String" till the "Index Position", mentioned as the "End" of the "Slicing" of a "String", i.e., Excluding the "Character" Present at the "Index Position" mentioned as the "End" of the "Slicing", no "Index Position" Should be Provided as the "Start" of the "Slicing". The "Start" Should be Kept as "Blank".
 
-# "Display" from the "First Character" of the "String", till the "Twentieth Character" at Index Position "19".
-# The "Twentieth Character" at Index Position "19" would be "Excluded" in the "Output".
+# "Display" from the "First Character" of the "String", till the "Twentieth Character" at Index Position "19". The "Twentieth Character" at Index Position "19" would be "Excluded" in the "Output".
 print(a[:19])
 
 # -----------------------------------------------------------------------------------------------------------------------------
 
-# To "Display" "All" the "Characters" of a "String" using "String Slicing", no "Index Position" Should be Provided for "Both"
-# the "Start" and "End" of the "Slicing". Both the "Start" and "End" Should be Kept as "Blank".
+# To "Display" "All" the "Characters" of a "String" using "String Slicing", no "Index Position" Should be Provided for "Both" the "Start" and "End" of the "Slicing". Both the "Start" and "End" Should be Kept as "Blank".
 print(a[:])
 
 # -----------------------------------------------------------------------------------------------------------------------------
@@ -259,26 +248,19 @@ print(a[:])
 
 # COMMAND ----------
 
-# It is possible to "Display" a "Sub-String" from a "String" using the "String Sciling" Technique, where the "Characters"
-# would be Present at a "Specific Interval". The "Character" of the "String", which would be at the "Index Position", mentioned
-# as the "End" of the "Slicing" would be "Excluded" in the "Output".
-# The "Interval" is mentioned as the "Step" of the "Slicing".
+# It is possible to "Display" a "Sub-String" from a "String" using the "String Sciling" Technique, where the "Characters" would be Present at a "Specific Interval". The "Character" of the "String", which would be at the "Index Position", mentioned as the "End" of the "Slicing" would be "Excluded" in the "Output". The "Interval" is mentioned as the "Step" of the "Slicing".
 
 # Assign the Variable "a" to the "String" Value "My Name is 'Oindrila Chakraborty Bagchi'." using "Triple Single Quotes".
 a = '''My Name is 'Oindrila Chakraborty Bagchi'.'''
 
 # -----------------------------------------------------------------------------------------------------------------------------
 
-# "Display" Every "Second Character" "Beginning" from the "First Character" of the "String", i.e., at Index Position "0", till
-# the "Twentieth Character" at Index Position "19".
-# The "Twentieth Character" at Index Position "19" would be "Excluded" in the "Output".
+# "Display" Every "Second Character" "Beginning" from the "First Character" of the "String", i.e., at Index Position "0", till the "Twentieth Character" at Index Position "19". The "Twentieth Character" at Index Position "19" would be "Excluded" in the "Output".
 print(a[:19:2])
 
 # -----------------------------------------------------------------------------------------------------------------------------
 
-# "Display" Every "Second Character" "Beginning" from the "Third Character" of the "String", i.e., at Index Position "2" till
-# the "Eighteenth Element" at Index Position "17".
-# The "Eightenth Character" at Index Position "17" would be "Excluded" in the "Output".
+# "Display" Every "Second Character" "Beginning" from the "Third Character" of the "String", i.e., at Index Position "2" till the "Eighteenth Element" at Index Position "17". The "Eightenth Character" at Index Position "17" would be "Excluded" in the "Output".
 print(a[2:17:2])
 
 # -----------------------------------------------------------------------------------------------------------------------------
