@@ -11,7 +11,7 @@
 # MAGIC * It is possible to "Remove" the "Rows" of a "Delta Table" that "Matches" a "Predicate".
 # MAGIC * When "No Predicate" is Provided, "All" the "Rows" are "Removed".
 # MAGIC * "delete" "Removes" the Data from the "Latest Version" of the "Delta Table" but "Does Not Remove" the Data from the "Physical Storage" until the "Old Versions" are "Explicitly Vacuumed".
-# MAGIC * When possible, it is best to Provide the "Predicates" on the "Partition Columns" for a "Partitioned Delta Table", because the "Predicates" can Significantly "Speed Up" the "Operation".
+# MAGIC * When possible, it is best to Provide the "Predicates" on the "Partition Columns" for a "Partitioned Delta Table", because the "Predicates" can Significantly "Speed Up" the "Delete Operation".
 
 # COMMAND ----------
 
