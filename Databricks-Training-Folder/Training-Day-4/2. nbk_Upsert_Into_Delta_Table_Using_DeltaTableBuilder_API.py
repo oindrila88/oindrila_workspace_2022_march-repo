@@ -43,18 +43,8 @@
 # MAGIC %md
 # MAGIC # "Schema Validation" in "merge" Programmatic Operation -
 # MAGIC * "merge" Automatically "Validates" that the "Schema" of the Data "Generated" by "Insert" and "Update" Expressions are "Compatible" with the "Schema" of the "Table". It Uses the Following "Rules" to "Determine" Whether the "merge" Operation is "Compatible" -
-# MAGIC * A. For "Update" and "Insert" Actions, the Specified "Target Columns" must "Exist" in the "Target Delta Table".
-# MAGIC * B. For "updateAll" and "insertAll" Actions, the "Source Dataset" must have "All" the "Columns" of the "Target Delta Table". The "Source Dataset" can have "Extra Columns" and those are "Ignored".
-# MAGIC * For "All Actions", If the "Data Type" "Generated" by the "Expressions" Producing the "Target Columns" are "Different" from the Corresponding "Columns" in the "Target Delta Table", "merge" Tries to "Cast" those to the "Types" in the "Table".
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC # "Automatic Schema Evolution" in "merge" Programmatic Operation -
-# MAGIC * By default, "updateAll" and "insertAll" Assign "All" the "Columns" in the "Target Delta Table" with "Columns" of the "Same Name" from the "Source Dataset". Any "Columns" in the "Source Dataset" that "Don’t Match" the "Columns" in the "Target Table" are "Ignored". However, in some Use Cases, it is "Desirable" to Automatically "Add" the "Source Columns" to the "Target Delta Table".
-# MAGIC * To "Automatically" "Update" the "Table Schema" during a "merge" Operation with "updateAll" and "insertAll" (At Least "One" of those), it is possible to "Set" the "Spark Session Configuration" "spark.databricks.delta.schema.autoMerge.enabled" to "true" Before "Running" the "merge" Operation.
-# MAGIC * "Schema Evolution" Occurs "Only When" there is "Either" an "updateAll" ("UPDATE SET *") or an "insertAll" ("INSERT *") Action, or both.
-# MAGIC * "update" and "insert" Actions "Cannot Explicitly Refer" to "Target Columns" that "Do Not" Already "Exist" in the "Target Table".
+# MAGIC * A. For "Update" and "Insert" Actions, the Specified "Columns" in the "Source Dataset" must "Exist" in the "Target Delta Table".
+# MAGIC * B. For "All Actions", If the "Data Type" "Generated" by the "Expressions" Producing the "Target Columns" are "Different" from the Corresponding "Columns" in the "Target Delta Table", "merge" Tries to "Cast" those to the "Types" in the "Table".
 
 # COMMAND ----------
 
@@ -98,3 +88,101 @@ deltaTableCustomer.alias('target') \
 # DBTITLE 1,Display the Data of the Delta Table "training.customers"
 # MAGIC %sql
 # MAGIC SELECT * FROM training.customers;
+
+# COMMAND ----------
+
+# DBTITLE 1,"Incoming DataFrame" Has Column that is "Not Present" in the "Target Delta Table" - "Schema Not Evolved"
+from delta.tables import *
+
+df_ReadCsvWithExtraColumn = spark.read.option("header", "true")\
+                                      .option("inferSchema", "true")\
+                                      .csv("/mnt/with-aad-app/databricks-training-folder/day-4/schema-merge-enforcement-csv-files/Customer_4.csv")
+
+deltaTableCustomer = DeltaTable.forName(spark, 'training.customers')
+
+deltaTableCustomer.alias('target') \
+  .merge(
+    df_ReadCsvWithExtraColumn.alias('source'),
+    'target.Customer_Id = source.Customer_Id'
+  ) \
+  .whenMatchedUpdateAll()\
+  .whenNotMatchedInsertAll()\
+  .execute()
+
+# COMMAND ----------
+
+# DBTITLE 1,Display the Data of the Delta Table "training.customers"
+# MAGIC %sql
+# MAGIC SELECT * FROM training.customers;
+# MAGIC 
+# MAGIC -- The "Source Dataset", i.e., "df_ReadCsvWithExtraColumn" has the "Extra Column", i.e., "Middle_Name", which is "Ignored", i.e., "Not Added" in the "Target Delta Table".
+
+# COMMAND ----------
+
+# DBTITLE 1,"Data Type" of a "Column" in "Incoming DataFrame" "Differs" in the "Target Delta Table" - "Schema Not Evolved"
+from delta.tables import *
+
+df_ReadCsvWithWrongDataType = spark.read.option("header", "true")\
+                                        .option("inferSchema", "true")\
+                                        .csv("/mnt/with-aad-app/databricks-training-folder/day-4/schema-merge-enforcement-csv-files/Customer_5.csv")
+
+deltaTableCustomer = DeltaTable.forName(spark, 'training.customers')
+
+deltaTableCustomer.alias('target') \
+  .merge(
+    df_ReadCsvWithWrongDataType.alias('source'),
+    'target.Customer_Id = source.Customer_Id'
+  ) \
+  .whenMatchedUpdateAll()\
+  .whenNotMatchedInsertAll()\
+  .execute()
+
+# COMMAND ----------
+
+# DBTITLE 1,Display the Data of the Delta Table "training.customers"
+# MAGIC %sql
+# MAGIC SELECT * FROM training.customers;
+# MAGIC 
+# MAGIC -- The "Source Dataset", i.e., "df_ReadCsvWithWrongDataType" has a Column, i.e., "Age" of "Decimal" Data Type, which is of "Integer" Data Type in the "Target Delta Table". Hence, "merge" Tries to "Cast" the Column "Age" from "Decimal" in the "Source Dataset" to "Integer" in the "Target Delta Table" , i.e., "Schema Did Not Evolve".
+# MAGIC 
+# MAGIC -- In this case, even Before "Running" the "merge" Operation, if "Spark Session Configuration" "spark.databricks.delta.schema.autoMerge.enabled" would be "Set" to "true", "Schema" Would "Not Evolve".
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC # "Automatic Schema Evolution" in "merge" Programmatic Operation -
+# MAGIC * By default, "updateAll" and "insertAll" Assign "All" the "Columns" in the "Target Delta Table" with "Columns" of the "Same Name" from the "Source Dataset". Any "Columns" in the "Source Dataset" that "Don’t Match" the "Columns" in the "Target Table" are "Ignored". However, in some Use Cases, it is "Desirable" to Automatically "Add" the "Source Columns" to the "Target Delta Table".
+# MAGIC * To "Automatically" "Update" the "Table Schema" during a "merge" Operation with "updateAll" and "insertAll" (At Least "One" of those), it is possible to "Set" the "Spark Session Configuration" "spark.databricks.delta.schema.autoMerge.enabled" to "true" Before "Running" the "merge" Operation.
+# MAGIC * "Schema Evolution" Occurs "Only When" there is "Either" an "updateAll" ("UPDATE SET *") or an "insertAll" ("INSERT *") Action, or both.
+# MAGIC * "update" and "insert" Actions "Cannot Explicitly Refer" to "Target Columns" that "Do Not" Already "Exist" in the "Target Table".
+# MAGIC * For "updateAll" and "insertAll" Actions, the "Source Dataset" must have "All" the "Columns" of the "Target Delta Table". The "Source Dataset" can have "Extra Columns" and those are "Ignored".
+
+# COMMAND ----------
+
+# DBTITLE 1,"Incoming DataFrame" Has Column that is "Not Present" in the "Target Delta Table" - "Schema Evolved"
+spark.conf.set("spark.databricks.delta.schema.autoMerge.enabled", True)
+
+from delta.tables import *
+
+df_ReadCsvWithExtraColumn = spark.read.option("header", "true")\
+                                      .option("inferSchema", "true")\
+                                      .csv("/mnt/with-aad-app/databricks-training-folder/day-4/schema-merge-evolution-csv-files/Customer_4.csv")
+
+deltaTableCustomer = DeltaTable.forName(spark, 'training.customers')
+
+deltaTableCustomer.alias('target') \
+  .merge(
+    df_ReadCsvWithExtraColumn.alias('source'),
+    'target.Customer_Id = source.Customer_Id'
+  ) \
+  .whenMatchedUpdateAll()\
+  .whenNotMatchedInsertAll()\
+  .execute()
+
+# COMMAND ----------
+
+# DBTITLE 1,Display the Data of the Delta Table "training.customers"
+# MAGIC %sql
+# MAGIC SELECT * FROM training.customers;
+# MAGIC 
+# MAGIC -- The "Source Dataset", i.e., "df_ReadCsvWithExtraColumn" has the "Extra Column", i.e., "Middle_Name", which is "Added" in the "Schema" of the "Target Delta Table".

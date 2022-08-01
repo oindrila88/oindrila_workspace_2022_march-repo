@@ -26,7 +26,8 @@
 # MAGIC     City STRING,
 # MAGIC     Country STRING
 # MAGIC )
-# MAGIC USING DELTA;
+# MAGIC USING DELTA
+# MAGIC LOCATION '/mnt/with-aad-app/databricks-training-folder/day-3/target-delta-table/training_customers';
 
 # COMMAND ----------
 
