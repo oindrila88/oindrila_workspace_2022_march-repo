@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 4
+# MAGIC # Databricks Training Day - 3
 # MAGIC * Topic: Introduction to "Schema Management" in "Delta Table".
 # MAGIC * Author: Oindrila Chakraborty
 
@@ -56,6 +56,8 @@ df_ReadCsvWithWrongDataType.write.format("delta")\
 # COMMAND ----------
 
 # DBTITLE 1,"Name" of a "Column" in "Incoming DataFrame" "Differ" from the "Name" in the "Target Delta Table"
+# "No New Columns" Will be "Created" in the "Target Delta Table". The Data, in the "Columns" of the "Incoming Dataset" Having a Name that "Differ" from the "Columns" of the "Target Delta Table" Only by a "Case", will be "Loaded" into the Respective "Columns" of the "Target Delta Table".
+
 df_ReadCsvWithWrongColumnName = spark.read.option("header", "true")\
                                           .option("inferSchema", "true")\
                                           .csv("/mnt/with-aad-app/databricks-training-folder/day-4/schema-enforcement-csv-files/Customer_6.csv")
@@ -63,6 +65,14 @@ df_ReadCsvWithWrongColumnName = spark.read.option("header", "true")\
 df_ReadCsvWithWrongColumnName.write.format("delta")\
                                    .mode("append")\
                                    .save("/mnt/with-aad-app/databricks-training-folder/day-3/target-delta-table/training_customers")
+
+# COMMAND ----------
+
+# DBTITLE 1,Display the Data of the Delta Table "training.customers"
+# MAGIC %sql
+# MAGIC SELECT * FROM training.customers;
+# MAGIC 
+# MAGIC -- The Data from the "Two Columns", i.e., "first_Name" and "last_Name" of the "Source Dataset", i.e., "df_ReadCsvWithWrongColumnName" got "Loaded" into the "First_Name" and "Last_Name" Columns of the "Target Delta Table" Respectively.
 
 # COMMAND ----------
 
@@ -127,6 +137,7 @@ df_ReadCsvWithWrongDataType.write.format("delta")\
 # COMMAND ----------
 
 # DBTITLE 1,"Name" of a "Column" in "Incoming DataFrame" "Differ" from the "Name" in the "Target Delta Table"
+# "No New Columns" Will be "Created" in the "Target Delta Table". The Data, in the "Columns" of the "Incoming Dataset" Having a Name that "Differ" from the "Columns" of the "Target Delta Table" Only by a "Case", will be "Loaded" into the Respective "Columns" of the "Target Delta Table".
 df_ReadCsvWithWrongColumnName = spark.read.option("header", "true")\
                                           .option("inferSchema", "true")\
                                           .csv("/mnt/with-aad-app/databricks-training-folder/day-4/schema-evolution-csv-files/Customer_6.csv")
