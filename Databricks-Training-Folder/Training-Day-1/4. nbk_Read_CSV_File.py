@@ -97,6 +97,16 @@ df_ReadCustomerWithInferSchema.printSchema()
 
 # COMMAND ----------
 
+# DBTITLE 1,"Read" the CSV File and "Check" the "Data Type" of the Column "ca_zip"
+df_ReadCustomerAddressInferSchema = spark.read\
+                                         .option("header", "true")\
+                                         .option("sep", "|")\
+                                         .option("inferSchema", "true")\
+                                         .csv("dbfs:/FileStore/tables/retailer/data/customer_address.dat")
+display(df_ReadCustomerAddressInferSchema)
+
+# COMMAND ----------
+
 # DBTITLE 1,Problem with Inferred Schemas - String Being Incorrectly Set as Double
 df_ReadCustomerAddressInferSchema = spark.read\
                                          .option("header", "true")\

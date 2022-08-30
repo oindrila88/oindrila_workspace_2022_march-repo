@@ -42,7 +42,7 @@ dbutils.fs.head("/FileStore/tables/retailer/image/firstFile.csv", 7)
 
 # DBTITLE 1,head - Display Contents of File
 # If no "Number" is specified, the "head ()" method returns the maximum bytes of the given file.
-dbutils.fs.head("/FileStore/tables/retailer/image/firstFile.csv")
+dbutils.fs.head("dbfs:/tmp/parentDir/childDir/firstFile.csv")
 
 # COMMAND ----------
 
@@ -63,7 +63,7 @@ dbutils.fs.rm("dbfs:/tmp/parentDir/childDir")
 dbutils.fs.rm("/tmp/parentDir")
 
 # Delete "Directory"
-dbutils.fs.rm("/tmp")
+#dbutils.fs.rm("/tmp")
 
 # Delete File
 dbutils.fs.rm("dbfs:/FileStore/tables/retailer/copyOfFirstFile.csv")

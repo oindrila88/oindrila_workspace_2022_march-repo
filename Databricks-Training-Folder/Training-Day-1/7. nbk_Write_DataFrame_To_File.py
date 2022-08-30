@@ -41,7 +41,7 @@ df_ReadCustomerDatFileUsingCsv.write\
 # COMMAND ----------
 
 # DBTITLE 1,Read "Part0.csv"
-df_ReadPart0Csv = spark.read.option("header", "true").csv("/tmp/output_csv/part-00000-tid-6361461086733544647-4c4763e4-0895-48af-978b-898d6b7517d6-2-1-c000.csv")
+df_ReadPart0Csv = spark.read.option("header", "true").csv("/tmp/output_csv/part-00000-tid-7118554349221942709-e3c2ea1f-b642-4ece-bdd5-15e412417f27-2-1-c000.csv")
 df_ReadPart0Csv.count()
 
 # COMMAND ----------
