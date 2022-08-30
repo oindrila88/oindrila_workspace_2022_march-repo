@@ -114,7 +114,7 @@ spark.sql(f"""COPY INTO {tableName}
 
 # COMMAND ----------
 
-# DBTITLE 1,Check the Data Present in the Delta Table
+# DBTITLE 1,Check the Data Present in the Delta Table "training.autoloader_students"
 # MAGIC %sql
 # MAGIC SELECT * FROM training.autoloader_students;
 

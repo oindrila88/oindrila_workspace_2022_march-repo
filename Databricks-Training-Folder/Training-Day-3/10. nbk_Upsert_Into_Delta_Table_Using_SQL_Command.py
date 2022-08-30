@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 4
+# MAGIC # Databricks Training Day - 3
 # MAGIC * Topic: "Upsert" Data into a "Delta Table" Using "SQL Command".
 # MAGIC * Author: Oindrila Chakraborty
 

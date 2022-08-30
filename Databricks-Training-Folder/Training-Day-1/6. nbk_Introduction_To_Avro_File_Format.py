@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Training Day - 4
+# MAGIC # Databricks Training Day - 1
 # MAGIC * Topic: Introduction to "AVRO" File Format.
 # MAGIC * Author: Oindrila Chakraborty
 
