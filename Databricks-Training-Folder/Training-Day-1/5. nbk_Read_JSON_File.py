@@ -33,6 +33,28 @@ display(df_ReadSingleLineJsonWithSchema)
 
 # COMMAND ----------
 
+# DBTITLE 1,Create JSON Schema Using Struct Type and a DataFrame Using that Schema
+from pyspark.sql.types import *
+
+singleLineJsonSchema = StructType([
+    StructField("address", StructType([
+        StructField("city", StringType(), True),
+        StructField("country", StringType(), True),
+        StructField("state", StringType(), True)
+    ]), True),
+    StructField("birthday", DateType(), True),
+    StructField("email", StringType(), True),
+    StructField("first_name", StringType(), True),
+    StructField("id", LongType(), True),
+    StructField("last_name", StringType(), True),
+    StructField("skills", ArrayType(StringType()), True)
+])
+
+df_ReadSingleLineJsonWithSchema = spark.read.schema(singleLineJsonSchema).json("dbfs:/FileStore/tables/retailer/data/single_line.json")
+display(df_ReadSingleLineJsonWithSchema)
+
+# COMMAND ----------
+
 # DBTITLE 1,Use "dateFormat" Property of "option" Method of DataFrameReader to Provide Custom Date Format
 df_ReadSingleLineJsonWithCustomDate = spark.read.schema(ddl_SingleLineJsonSchema).option("dateFormat", "dd.MM.yyyy").json("dbfs:/FileStore/tables/retailer/data/single_line.json")
 display(df_ReadSingleLineJsonWithCustomDate)
