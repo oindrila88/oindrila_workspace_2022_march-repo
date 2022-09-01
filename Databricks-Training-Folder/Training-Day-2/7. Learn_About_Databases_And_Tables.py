@@ -76,6 +76,11 @@ spark.sql("CREATE TABLE IF NOT EXISTS tbl_demo AS SELECT * FROM global_temp.gv_t
 # COMMAND ----------
 
 # MAGIC %sql
+# MAGIC DESCRIBE DETAIL retailer_db.tbl_demo
+
+# COMMAND ----------
+
+# MAGIC %sql
 # MAGIC DESCRIBE EXTENDED retailer_db.tbl_demo
 
 # COMMAND ----------
@@ -96,7 +101,7 @@ display(spark.sql("SHOW TABLES IN retailer_db"))
 # MAGIC * When an "Unmanaged" or "External" Table is "Dropped", the "Underlying Data" is "Not Affected".
 # MAGIC * "Unmanaged" or "External" Tables will always specify a LOCATION during the "Table Creation".
 # MAGIC * Either an "Existing Directory of Data Files" can be "Registered"  as an "Unmanaged" or "External" Table or a "Path" can be provide  when an "Unmanaged" or "External" Table is first defined.
-# MAGIC * Because "Data" and "Metadata" are "Managed Independently", it is possible to "Rename" a an "Unmanaged" or "External" Table or "Register" an "Unmanaged" or "External" Table to a "New Database" without needing to move any "Data".
+# MAGIC * Because "Data" and "Metadata" are "Managed Independently", it is possible to "Rename" an "Unmanaged" or "External" Table or "Register" an "Unmanaged" or "External" Table to a "New Database" without needing to move any "Data".
 # MAGIC * "Data Engineers" often prefer "Unmanaged" or "External" Tables and the flexibility these provide for "Production Data".
 
 # COMMAND ----------
@@ -179,6 +184,7 @@ display(spark.sql("SHOW TABLES IN retailer_db"))
 # DBTITLE 1,Read a CSV File Using "csv" method of "DataFrameReader" and Create a DataFrame
 df_ReadCustomerFileUsingCsv = spark.read\
                                     .option("header", "true")\
+                                    .option("inferSchema", "true")\
                                     .csv("dbfs:/FileStore/tables/retailer/data/customer.csv")
 display(df_ReadCustomerFileUsingCsv)
 
@@ -247,24 +253,24 @@ df_ReadCustomerFileUsingCsv.write\
 # MAGIC %sql
 # MAGIC CREATE TABLE IF NOT EXISTS retailer_db.tbl_CustomerWithDeltaFile
 # MAGIC (
-# MAGIC     c_customer_sk long,
+# MAGIC     c_customer_sk int,
 # MAGIC     c_customer_id string,
-# MAGIC          c_current_cdemo_sk long,
-# MAGIC          c_current_hdemo_sk long,
-# MAGIC          c_current_addr_sk long,
-# MAGIC          c_first_shipto_date_sk long,
-# MAGIC          c_first_sales_date_sk long,
-# MAGIC          c_salutation string,
-# MAGIC          c_first_name string,
-# MAGIC          c_last_name string,
-# MAGIC          c_preferred_cust_flag string,
-# MAGIC          c_birth_day int,
-# MAGIC          c_birth_month int,
-# MAGIC          c_birth_year int,
-# MAGIC          c_birth_country string,
-# MAGIC          c_login string,
-# MAGIC          c_email_address string,
-# MAGIC          c_last_review_date long
+# MAGIC     c_current_cdemo_sk int,
+# MAGIC     c_current_hdemo_sk int,
+# MAGIC     c_current_addr_sk int,
+# MAGIC     c_first_shipto_date_sk int,
+# MAGIC     c_first_sales_date_sk int,
+# MAGIC     c_salutation string,
+# MAGIC     c_first_name string,
+# MAGIC     c_last_name string,
+# MAGIC     c_preferred_cust_flag string,
+# MAGIC     c_birth_day int,
+# MAGIC     c_birth_month int,
+# MAGIC     c_birth_year int,
+# MAGIC     c_birth_country string,
+# MAGIC     c_login string,
+# MAGIC     c_email_address string,
+# MAGIC     c_last_review_date double
 # MAGIC )
 # MAGIC USING delta
 # MAGIC LOCATION 'dbfs:/tmp/tables/retailer_db.db/tbl_FromCustomerDataFrame'

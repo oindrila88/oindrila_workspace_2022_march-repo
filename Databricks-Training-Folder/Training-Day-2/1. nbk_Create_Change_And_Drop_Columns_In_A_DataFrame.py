@@ -26,9 +26,9 @@ display(df_ReadIncomeBandUsingCsv)
 from pyspark.sql.functions import col, column
 
 df_IncomeBandWithIncomeGroup = df_ReadIncomeBandUsingCsv\
-                    .withColumn("isFirstIncomeGroup", col("ib_upper_bound") < 60000)\
-                    .withColumn("isSecondIncomeGroup", (col("ib_upper_bound") >= 60000) & (col("ib_upper_bound") < 120000))\
-                    .withColumn("isThirdIncomeGroup", (column("ib_upper_bound") >= 120000) & (column("ib_upper_bound") < 200000))
+                                  .withColumn("isFirstIncomeGroup", col("ib_upper_bound") < 60000)\
+                                  .withColumn("isSecondIncomeGroup", (col("ib_upper_bound") >= 60000) & (col("ib_upper_bound") < 120000))\
+                                  .withColumn("isThirdIncomeGroup", (column("ib_upper_bound") >= 120000) & (column("ib_upper_bound") < 200000))
 
 display(df_ReadIncomeBandUsingCsv)
 
@@ -82,7 +82,7 @@ display(df_DemoColumnsWithLit)
 # Change the Column Name "isThirdIncomeGroup" to "isHighIncomeClass" of "df_IncomeBandWithIncomeGroup" DataFrame
 df_IncomeClass = df_IncomeBandWithIncomeGroup\
                     .withColumnRenamed("isFirstIncomeGroup", "isStandardIncomeClass")\
-                    .withColumnRenamed("isSecondIncomeGroup", "isMediumIncomeGroup")\
+                    .withColumnRenamed("isSecondIncomeGroup", "isMediumIncomeClass")\
                     .withColumnRenamed("isThirdIncomeGroup", "isHighIncomeClass")
 
 # The Column Name "isThirdIncomeGroup" Remains the Same in the "df_IncomeBandWithIncomeGroup" DataFrame
@@ -160,8 +160,10 @@ df_IncomeBandAfterMultColumnDropUsingColumnNamesInList.printSchema()
 # DBTITLE 1,Read a CSV File Using "csv" method of "DataFrameReader" and Create a DataFrame
 df_ReadCustomerFileUsingCsv = spark.read\
                                     .option("header", "true")\
+                                    .option("inferSchema", "true")\
                                     .csv("dbfs:/FileStore/tables/retailer/data/customer.csv")
 display(df_ReadCustomerFileUsingCsv)
+df_ReadCustomerFileUsingCsv.printSchema()
 
 # COMMAND ----------
 

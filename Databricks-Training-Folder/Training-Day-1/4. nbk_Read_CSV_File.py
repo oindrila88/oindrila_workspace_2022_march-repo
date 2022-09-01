@@ -48,13 +48,13 @@ len(df_ReadCustomerFileWithHeader.columns)
 # COMMAND ----------
 
 # DBTITLE 1,Select Specific Columns from the DataFrame "df_ReadCustomerDatFileWithHeader" and Create a New DataFrame that Contains Only the Selected Columns
-df_CustomerWithBDay = df_ReadCustomerDatFileWithHeader.select(\
-                                                              "c_customer_id",\
-                                                              "c_first_name",\
-                                                              "c_last_name",\
-                                                              "c_birth_year",\
-                                                              "c_birth_month",\
-                                                              "c_birth_day"\
+df_CustomerWithBDay = df_ReadCustomerDatFileWithHeader.select(
+                                                              "c_customer_id",
+                                                              "c_first_name",
+                                                              "c_last_name",
+                                                              "c_birth_year",
+                                                              "c_birth_month",
+                                                              "c_birth_day"
                                                             )
 display(df_CustomerWithBDay)
 
@@ -68,11 +68,11 @@ df_CustomerWithBDay.show()
 # DBTITLE 1,Refer to Columns Using Column Objects of "PySpark.Sql.Functions.Col/Column"
 from pyspark.sql.functions import col, column
 
-df_CustomerWithBDayUsingColObj = df_ReadCustomerDatFileWithHeader.select(\
-                                                                            col('c_customer_id'),\
-                                                                            column('c_first_name'),\
-                                                                            col("c_birth_day"),\
-                                                                            "c_birth_year"\
+df_CustomerWithBDayUsingColObj = df_ReadCustomerDatFileWithHeader.select(
+                                                                            col('c_customer_id'),
+                                                                            column('c_first_name'),
+                                                                            col("c_birth_day"),
+                                                                            "c_birth_year"
                                                                         )
 display(df_CustomerWithBDayUsingColObj)
 

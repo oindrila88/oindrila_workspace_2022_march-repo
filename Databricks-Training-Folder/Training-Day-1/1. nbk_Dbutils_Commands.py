@@ -36,7 +36,7 @@ dbutils.fs.mv("dbfs:/tmp/parentDir/childDir", "dbfs:/FileStore/tables/retailer/i
 
 # DBTITLE 1,head - Display Contents of File
 # If a "Number" is specified, the "head ()" method returns up to the mentioned number of bytes of the given file.
-dbutils.fs.head("/FileStore/tables/retailer/image/firstFile.csv", 7)
+dbutils.fs.head("/FileStore/tables/retailer/image/firstFile.csv", 8)
 
 # COMMAND ----------
 
@@ -57,13 +57,4 @@ dbutils.fs.rm("/FileStore/tables/retailer/image/firstFile.csv")
 dbutils.fs.rm("/FileStore/tables/retailer/image/secondFile.csv")
 
 # Delete "Directory"
-dbutils.fs.rm("dbfs:/tmp/parentDir/childDir")
-
-# Delete "Directory"
 dbutils.fs.rm("/tmp/parentDir")
-
-# Delete "Directory"
-#dbutils.fs.rm("/tmp")
-
-# Delete File
-dbutils.fs.rm("dbfs:/FileStore/tables/retailer/copyOfFirstFile.csv")

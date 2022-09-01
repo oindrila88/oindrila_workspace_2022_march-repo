@@ -125,6 +125,7 @@ employeeSchemaDf.printSchema()
 
 # DBTITLE 1,Create DataFrame from a List of Rows Using "createDataFrame ()" Method
 employeeRow = map(lambda x: Row(*x), employeeList)
+print(type(employeeRow))
 employeeDf = spark.createDataFrame(employeeRow)
 employeeDf.printSchema()
 

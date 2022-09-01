@@ -15,7 +15,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC # There are "Two Ways" to "Mount" ADLS Gen2 to "Databricks File System" (DBFS) -
+# MAGIC # There are "Three Ways" to "Mount" ADLS Gen2 to "Databricks File System" (DBFS) -
 # MAGIC * A. Using "Access Key"
 # MAGIC * B. Using "SAS Token"
 # MAGIC * C. Using "Registered Active Directory Application"

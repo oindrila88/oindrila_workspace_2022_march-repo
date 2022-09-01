@@ -19,7 +19,7 @@
 
 # MAGIC %md
 # MAGIC # Why Use Secret Scope?
-# MAGIC * In the "Notebook", when trying to "Access" the "Passwords" or "Secrets" or "Credentials", insted of "Hardcoding" those, it is possible to "Access" the "Secrets" that has the "Values" of those "Passwords" or "Secrets" or "Credentials" stored in a "Secret Scope".
+# MAGIC * In the "Notebook", when trying to "Access" the "Passwords" or "Secrets" or "Credentials", instead of "Hardcoding" those, it is possible to "Access" the "Secrets" that has the "Values" of those "Passwords" or "Secrets" or "Credentials" stored in a "Secret Scope".
 
 # COMMAND ----------
 

@@ -85,7 +85,7 @@ display(spark.sql("show views"))
 
 # COMMAND ----------
 
-# DBTITLE 1,Display All Available "Global Temporary Views" in the Current Database in Use in a Databricks Environment
+# DBTITLE 1,Display All Available "Global Temporary Views" in Use in a Databricks Environment
 display(spark.sql("show views in global_temp"))
 
 # COMMAND ----------

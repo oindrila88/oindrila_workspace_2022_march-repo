@@ -9,6 +9,7 @@
 # DBTITLE 1,Read a CSV File Using "csv" method of "DataFrameReader" and Create a DataFrame
 df_ReadCustomerFileUsingCsv = spark.read\
                                     .option("header", "true")\
+                                    .option("inferSchema", "true")\
                                     .csv("dbfs:/FileStore/tables/retailer/data/customer.csv")
 display(df_ReadCustomerFileUsingCsv)
 
@@ -158,6 +159,7 @@ display(\
 # DBTITLE 1,Read a CSV File Using "csv" method of "DataFrameReader" and Create a DataFrame
 df_ReadCustomerFileUsingCsv = spark.read\
                                     .option("header", "true")\
+                                    .option("inferSchema", "true")\
                                     .csv("dbfs:/FileStore/tables/retailer/data/customer.csv")
 display(df_ReadCustomerFileUsingCsv)
 
@@ -175,7 +177,7 @@ display(df_ChangeColumnDataTypeUsingSelect)
 
 # COMMAND ----------
 
-# DBTITLE 1,Change Datatype of Columns Using "select ()" Function Along With "cast()" and "expr ()" Functions
+# DBTITLE 1,Change Datatype of Columns Using "select ()" Function Along With "expr ()" Functions
 from pyspark.sql.functions import expr
 
 df_ChangeColumnDataTypeUsingSelectExpr = df_ReadCustomerFileUsingCsv\
@@ -184,7 +186,7 @@ display(df_ChangeColumnDataTypeUsingSelectExpr)
 
 # COMMAND ----------
 
-# DBTITLE 1,Change Datatype of Columns Using "selectExpr()" Function Along With "cast()" Function
+# DBTITLE 1,Change Datatype of Columns Using "selectExpr()" Function
 df_ChangeColumnDataTypeUsingSelectExpr = df_ReadCustomerFileUsingCsv\
                                                     .selectExpr("cast(c_first_shipto_date_sk as string)", "cast(c_first_name as integer)")
 display(df_ChangeColumnDataTypeUsingSelectExpr)

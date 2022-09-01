@@ -9,6 +9,7 @@
 # DBTITLE 1,Read a CSV File Using "csv" method of "DataFrameReader" and Create a DataFrame
 df_ReadCustomerFileUsingCsv = spark.read\
                                     .option("header", "true")\
+                                    .option("inferSchema", "true")\
                                     .csv("dbfs:/FileStore/tables/retailer/data/customer.csv")
 display(df_ReadCustomerFileUsingCsv)
 
@@ -83,10 +84,10 @@ display(df_ReadSalesStore.select(sum("ss_net_paid_inc_tax"), sum("ss_net_profit"
 
 # COMMAND ----------
 
-# DBTITLE 1,Sum All the Distinct Values of Multiple Columns of a DataFrame Using "sumDistinct ()" Function of "pyspark.sql.functions" Package
-from pyspark.sql.functions import sum, sumDistinct
+# DBTITLE 1,Sum All the Distinct Values of Multiple Columns of a DataFrame Using "sum_distinct ()" Function of "pyspark.sql.functions" Package
+from pyspark.sql.functions import sum, sum_distinct
 
-display(df_ReadSalesStore.select(sumDistinct("ss_net_paid_inc_tax"), sumDistinct("ss_net_profit")))
+display(df_ReadSalesStore.select(sum_distinct("ss_net_paid_inc_tax"), sum_distinct("ss_net_profit")))
 
 # COMMAND ----------
 

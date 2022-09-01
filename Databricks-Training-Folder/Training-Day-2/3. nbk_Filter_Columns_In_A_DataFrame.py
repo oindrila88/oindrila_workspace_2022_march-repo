@@ -9,6 +9,7 @@
 # DBTITLE 1,Read a CSV File Using "csv" method of "DataFrameReader" and Create a DataFrame
 df_ReadCustomerFileUsingCsv = spark.read\
                                     .option("header", "true")\
+                                    .option("inferSchema", "true")\
                                     .csv("dbfs:/FileStore/tables/retailer/data/customer.csv")
 display(df_ReadCustomerFileUsingCsv)
 
@@ -230,5 +231,6 @@ display(df_SortCustomerByFirstNameInAscLastNameInDesc)
 from pyspark.sql.functions import expr
 
 df_SortCustomerByFirstNameInDesc = df_ReadCustomerFileUsingCsv\
+                                                            .filter(col("c_first_name").isNotNull())\
                                                             .orderBy(expr("c_first_name").desc())
 display(df_SortCustomerByFirstNameInDesc)

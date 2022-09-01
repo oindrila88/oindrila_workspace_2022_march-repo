@@ -13,8 +13,6 @@ from pyspark.sql.types import *
 # COMMAND ----------
 
 # DBTITLE 1,Create a List
-employeeColumns = ["Employee_Id", "First_Name", "Last_Name", "House_No", "Address", "City", "Pincode"]
-
 employeeList = [\
                   (1001, "Oindrila", "CHakraborty", "118/H", "Narikel Danga North Road", "Kolkata", 700011),\
                   (1002, "Soumyajyoti", "Bagchi", "38", "Dhakuria East Road", "Kolkata", 700078),\
@@ -32,7 +30,7 @@ print(employeeRdd.collect())
 # COMMAND ----------
 
 # DBTITLE 1,Create RDD from List Using "parallelize ()" Function Having "Partition Numbers"
-employeeWithPartitionRdd = spark.sparkContext.parallelize(employeeList, 6)
+employeeWithPartitionRdd = spark.sparkContext.parallelize(employeeList, 5)
 print("Number of Partitions: " + str(employeeWithPartitionRdd.getNumPartitions()))
 
 # COMMAND ----------
@@ -70,8 +68,6 @@ for employee in employeeFilterRdd.collect():
 # COMMAND ----------
 
 # DBTITLE 1,Create an RDD from Existing DataFrames and DataSet
-employeeColumns = ["Employee_Id", "First_Name", "Last_Name", "House_No", "Address", "City", "Pincode"]
-
 employeeSchema = StructType([\
                              StructField("Employee_Id", IntegerType(), False),
                              StructField("First_Name", StringType(), False),
