@@ -170,7 +170,7 @@ listOfFirstNames = ['David', 'Ronnie', 'Samuel', 'Kathleen']
 #Select All Customers Not Having First Names as "David", "Ronnie", "Samuel" or, "Kathleen".
 df_FilterCustomerUsingFirstNameNotPresentInList = df_ReadCustomerFileUsingCsv\
                                                                             .filter(~col("c_first_name").isin(listOfFirstNames))
-display(df_FilterCustomerUsingBirthCountryPresentInList)
+display(df_FilterCustomerUsingFirstNameNotPresentInList)
 
 # COMMAND ----------
 
@@ -197,7 +197,7 @@ display(df_SortCustomerByFirstNameInDesc)
 from pyspark.sql.functions import col
 
 df_SortCustomerByFirstNameInAscLastNameInDesc = df_ReadCustomerFileUsingCsv\
-                                                                        .filter(col("c_first_name").isNotNull() & col("c_last_namec_first_name").isNotNull())\
+                                                                        .filter(col("c_first_name").isNotNull() & col("c_last_name").isNotNull())\
                                                                         .sort(col("c_first_name").asc(), col("c_last_name").desc())
 display(df_SortCustomerByFirstNameInAscLastNameInDesc)
 

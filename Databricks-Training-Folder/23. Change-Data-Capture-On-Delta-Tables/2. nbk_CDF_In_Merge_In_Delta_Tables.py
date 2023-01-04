@@ -8,9 +8,9 @@
 
 # MAGIC %md
 # MAGIC # Using "Change Data Feed" (CDF) "Row Data" in a "MERGE" Statement
-# MAGIC * "Aggregate MERGE" Statements, like the "MERGE INTO" the "Silver", or, "Gold" Delta Table, can be "Complex" by nature, but the "Change Data Feed" (CDF) Feature makes the "Coding" of these "Statements" "Simpler" and "More Efficient".
+# MAGIC * "<b>Aggregate MERGE</b>" Statements, like the "<b>MERGE INTO</b>" the "<b>Silver</b>", or, "<b>Gold</b>" Delta Table, can be "<b>Complex</b>" by nature, but the "<b>Change Data Feed</b>" (<b>CDF</b>) Feature makes the "<b>Coding</b>" of these "<b>Statements</b>" "<b>Simpler</b>" and "<b>More Efficient</b>".
 # MAGIC * <img src = '/files/tables/images/merge_cdc.jpg'>
-# MAGIC * "CDF" makes it Simple to "Derive" which "Rows" have "Changed", as it Only "Performs" the "Needed Aggregation" on the "Data" that "Has Changed", or, is "New" using the "table_changes" Operation.
+# MAGIC * "<b>CDF</b>" makes it Simple to "<b>Derive</b>" which "<b>Rows</b>" have "<b>Changed</b>", as it Only "<b>Performs</b>" the "<b>Needed Aggregation</b>" on the "<b>Data</b>" that "<b>Has Changed</b>", or, is "<b>New</b>" using the "<b>table_changes</b>" Operation.
 
 # COMMAND ----------
 
@@ -140,7 +140,8 @@ if int(startVersion) <= int(endVersion):
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC * you can use the changed data from the silver table to aggregate only the data on the rows that need to be updated or inserted into the gold table. To do this, use INNER JOIN on the table_changes(‘table_name’,’version’)
+# MAGIC * "<b>Users</b>" can "<b>Use</b>" the "<b>Changed Data</b>" from the "<b>Bronze Table</b>" to "<b>Aggregate</b>" Only the "<b>Data</b>" on the "<b>Rows</b>" that "<b>Need</b>" to be "<b>Updated</b>" or "<b>Inserted</b>" into the "<b>Silver Table</b>".
+# MAGIC * To do this, the "<b>INNER JOIN</b>" is "<b>Used</b>" on the "<b>table_changes(‘table_name’,’version’)</b>".
 
 # COMMAND ----------
 

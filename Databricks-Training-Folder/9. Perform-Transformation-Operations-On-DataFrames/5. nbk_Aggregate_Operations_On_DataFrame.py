@@ -12,6 +12,11 @@
 
 # COMMAND ----------
 
+from pyspark.sql.functions import *
+from pyspark.sql.types import *
+
+# COMMAND ----------
+
 # DBTITLE 1,Read a CSV File Using "csv" method of "DataFrameReader" and Create a DataFrame
 df_ReadCustomerFileUsingCsv = spark.read\
                                     .option("header", "true")\

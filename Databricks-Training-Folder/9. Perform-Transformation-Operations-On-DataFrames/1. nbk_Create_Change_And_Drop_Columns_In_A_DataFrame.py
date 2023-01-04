@@ -28,7 +28,7 @@ from pyspark.sql.functions import col, column
 df_IncomeBandWithIncomeGroup = df_ReadIncomeBandUsingCsv\
                                   .withColumn("isFirstIncomeGroup", col("ib_upper_bound") < 60000)\
                                   .withColumn("isSecondIncomeGroup", (col("ib_upper_bound") >= 60000) & (col("ib_upper_bound") < 120000))\
-                                  .withColumn("isThirdIncomeGroup", (column("ib_upper_bound") >= 120000) & (column("ib_upper_bound") < 200000))
+                                  .withColumn("isThirdIncomeGroup", (column("ib_upper_bound") >= 120000) & (column("ib_upper_bound") <= 200000))
 
 display(df_ReadIncomeBandUsingCsv)
 
@@ -48,7 +48,7 @@ df_IncomeBandWithIncomeGroupUsingCaseWhen = df_ReadIncomeBandUsingCsv\
                                                       .otherwise("No"))\
                     .withColumn("isSecondIncomeGroup", when((col("ib_upper_bound") >= 60000) & (col("ib_upper_bound") < 120000), "Yes")\
                                                        .otherwise("No"))\
-                    .withColumn("isThirdIncomeGroup", when((col("ib_upper_bound") >= 120000) & (col("ib_upper_bound") < 200000), "Yes")\
+                    .withColumn("isThirdIncomeGroup", when((col("ib_upper_bound") >= 120000) & (col("ib_upper_bound") <= 200000), "Yes")\
                                                       .otherwise("No"))
 
 display(df_IncomeBandWithIncomeGroupUsingCaseWhen)

@@ -160,7 +160,7 @@ df_ReadCustomerFileUsingCsv = spark.read\
 
 df_ReadCustomerFileUsingCsv.printSchema()
 
-df_ReadCustomerFileUsingCsv.write.format("delta").saveAsTable("retailer_db.tbl_DeltaCustomerFromDataFrame")
+df_ReadCustomerFileUsingCsv.write.format("delta").mode("append").saveAsTable("retailer_db.tbl_DeltaCustomerFromDataFrame")
 
 # The "Files" for the "Delta Table" is "Created" in the Default Path "/user/hive/warehouse/retailer_db.db/tbl_deltacustomerfromdataframe".
 

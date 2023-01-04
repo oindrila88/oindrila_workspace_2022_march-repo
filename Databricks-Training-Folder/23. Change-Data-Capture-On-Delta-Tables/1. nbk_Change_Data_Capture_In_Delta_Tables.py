@@ -8,47 +8,47 @@
 
 # MAGIC %md
 # MAGIC # What is "Change Data Capture"?
-# MAGIC * "Change Data Capture", or "CDC", in short, "Refers" to the "Process" of "Capturing" "Only" the "Changes" made in a "Set of Data Sources" since the "Last Successful Load" and "Merging" "Only" those "Changes" in a "Set of Target Tables", typically in a "Data Warehouse".
-# MAGIC * The "Data Warehouse" is typically "Refreshed" "Nightly", "Hourly", or, in some cases, "Sub-Hourly" (e.g., "Every 15 Minutes"). This "Period" is "Refered" to as the "Refresh Period".
-# MAGIC * The "Set" of "Changed Records" for a given "Table" "Within" a "Refresh Period" is "Referred" to as a "Change Set".
-# MAGIC * Finally, the "Set of Records" "Within" a "Change Set" that has the "Same" "Primary Key" is "Referred" to as a "Record Set". Intuitively the "Record Set" "Refer" to "Different" "Changes" for the "Same Record" in the "Final Table".
+# MAGIC * "<b>Change Data Capture</b>", or "<b>CDC</b>", in short, "<b>Refers</b>" to the "<b>Process</b>" of "<b>Capturing</b>" "<b>Only</b>" the "<b>Changes</b>" made in a "<b>Set of Data Sources</b>" since the "<b>Last Successful Load</b>" and "<b>Merging</b>" "<b>Only</b>" those "<b>Changes</b>" in a "<b>Set of Target Tables</b>", typically in a "<b>Data Warehouse</b>".
+# MAGIC * The "<b>Data Warehouse</b>" is typically "<b>Refreshed</b>" "<b>Nightly</b>", "<b>Hourly</b>", or, in some cases, "<b>Sub-Hourly</b>" (e.g., "<b>Every 15 Minutes</b>"). This "<b>Period</b>" is "<b>Refered</b>" to as the "<b>Refresh Period</b>".
+# MAGIC * The "<b>Set</b>" of "<b>Changed Records</b>" for a given "<b>Table</b>" "<b>Within</b>" a "<b>Refresh Period</b>" is "<b>Referred</b>" to as a "<b>Change Set</b>".
+# MAGIC * Finally, the "<b>Set of Records</b>" "<b>Within</b>" a "<b>Change Set</b>" that has the "<b>Same</b>" "<b>Primary Key</b>" is "<b>Referred</b>" to as a "<b>Record Set</b>". Intuitively the "<b>Record Set</b>" "<b>Refer</b>" to "<b>Different</b>" "<b>Changes</b>" for the "<b>Same Record</b>" in the "<b>Final Table</b>".
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC # What is "Medallion Architecture"?
-# MAGIC * Typically "CDC" is "Used" in an "Ingestion" to "Analytics Architecture", called the "Medallion Architecture".
-# MAGIC * The "Medallion Architecture" takes "Raw Data" "Landed" from the "Source Systems" and "Refines" the "Data" through the "Bronze", "Silver" and "Gold" "Tables".
-# MAGIC * "CDC" and the "Medallion Architecture" provide "Multiple Benefits" to "Users" since the "Only Changed" or "Added Data" needs to be "Processed".
-# MAGIC * In addition, the "Different Tables" in the "Architecture" "Allow" the "Different Personas", such as "Data Scientists" and "BI Analysts", to "Use" the "Correct Up-To-Date Data" for their "Needs".
-# MAGIC <br><img src = '/files/tables/images/cdc_1.jpg'>
+# MAGIC * Typically "<b>CDC</b>" is "<b>Used</b>" in an "<b>Ingestion</b>" to "<b>Analytics Architecture</b>", called the "<b>Medallion Architecture</b>".
+# MAGIC * The "<b>Medallion Architecture</b>" takes "<b>Raw Data</b>" "<b>Landed</b>" from the "<b>Source Systems</b>" and "<b>Refines</b>" the "<b>Data</b>" through the "<b>Bronze</b>", "<b>Silver</b>" and "<b>Gold</b>" "<b>Tables</b>".
+# MAGIC * "<b>CDC</b>" and the "<b>Medallion Architecture</b>" provide "<b>Multiple Benefits</b>" to "<b>Users</b>" since the "<b>Only Changed</b>" or "<b>Added Data</b>" needs to be "<b>Processed</b>".
+# MAGIC * In addition, the "<b>Different Tables</b>" in the "<b>Architecture</b>" "<b>Allow</b>" the "<b>Different Personas</b>", such as "<b>Data Scientists</b>" and "<b>BI Analysts</b>", to "<b>Use</b>" the "<b>Correct Up-To-Date Data</b>" for their "<b>Needs</b>".
+# MAGIC * <img src = '/files/tables/images/cdc_1.jpg'>
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC # What is "Change Data Feed"?
-# MAGIC * "Change Data Feed" ("CDF") feature "Allows" the "Delta Tables" to "Track" the "Row-Level Changes" between the "Versions" of a "Delta Table".
-# MAGIC * With "Change Data Feed" ("CDF") "Enabled" on a "Delta Table", the "Databricks Runtime" "Records" the "Change Events" for "All" the "Data" "Written" into the "Delta Table". This "Includes" the "Row" of "Data" "Along With" the "Metadata" "Indicating" whether the "Specified Row" was "Inserted", "Deleted", or "Updated".
-# MAGIC * It is possible to "Read" the "Change Events" in the "Batch Queries" using the "SQL" and "DataFrame APIs", i.e., "df.read".
-# MAGIC * It is possible to "Read" the "Change Events" in the "Streaming Queries" using the "DataFrame APIs", i.e., "df.readStream".
-# MAGIC * "CDF" "Captures" the "Changes Only" from a "Delta Table" and is "Only Forward-Looking" "Once Enabled".
-# MAGIC * Only the "Changes Made" After the "Change Data Feed" is "Enabled" on a "Delta Table" are "Recorded". "Past Changes" to a "Delta Table" are "Not Captured".
+# MAGIC * "<b>Change Data Feed</b>" ("<b>CDF</b>") feature "<b>Allows</b>" the "<b>Delta Tables</b>" to "<b>Track</b>" the "<b>Row-Level Changes</b>" between the "<b>Versions</b>" of a "<b>Delta Table</b>".
+# MAGIC * With "<b>Change Data Feed</b>" ("<b>CDF</b>") "<b>Enabled</b>" on a "<b>Delta Table</b>", the "<b>Databricks Runtime</b>" "<b>Records</b>" the "<b>Change Events</b>" for "<b>All</b>" the "<b>Data</b>" "<b>Written</b>" into the "<b>Delta Table</b>". This "<b>Includes</b>" the "<b>Row</b>" of "<b>Data</b>" "<b>Along With</b>" the "<b>Metadata</b>" "<b>Indicating</b>" whether the "<b>Specified Row</b>" was "<b>Inserted</b>", "<b>Deleted</b>", or "<b>Updated</b>".
+# MAGIC * It is possible to "<b>Read</b>" the "<b>Change Events</b>" in the "<b>Batch Queries</b>" using the "<b>SQL</b>" and "<b>DataFrame APIs</b>", i.e., "<b>df.read</b>".
+# MAGIC * It is possible to "<b>Read</b>" the "<b>Change Events</b>" in the "<b>Streaming Queries</b>" using the "<b>DataFrame APIs</b>", i.e., "<b>df.readStream</b>".
+# MAGIC * "<b>CDF</b>" "<b>Captures</b>" the "<b>Changes Only</b>" from a "<b>Delta Table</b>" and is "<b>Only Forward-Looking</b>" "<b>Once Enabled</b>".
+# MAGIC * Only the "<b>Changes Made</b>" After the "<b>Change Data Feed</b>" is "<b>Enabled</b>" on a "<b>Delta Table</b>" are "<b>Recorded</b>". "<b>Past Changes</b>" to a "<b>Delta Table</b>" are "<b>Not Captured</b>".
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC # "Use cases" of "Change Data Feed"
-# MAGIC * "Change Data Feed" is "Not Enabled" "By Default". The following "Use Cases" "Drive" "When" the "Change Data Feed"should be "Enabled".
-# MAGIC * A. <b>Silver and Gold Tables</b>: "Improve" the "Delta Performance" by "Processing" the "Only Row-Level Changes" following "Initial" "MERGE", "UPDATE", or "DELETE" Operations to "Accelerate" and "Simplify" the "ETL" and "ELT" Operations.
-# MAGIC * B. <b>Materialized Views</b>: "Create" the "Up-To-Date", "Aggregated Views" of "Information" for "Use" in "BI" and "Analytics" "Without" having to "Re-Process" the "Full Underlying Tables", Instead "Updating" only where "Changes" have "Come Through".
-# MAGIC * C. <b>Transmit Changes</b>: "Send" a "Change Data Feed" to "Downstream Systems", such as "Kafka" or "RDBMS" that can "Use" it to "Incrementally Process" in the "Later Stages" of "Data Pipelines".
-# MAGIC * D. <b>Audit Trail Table</b>: "Capture" the "Change Data Feed" as a "Delta Table" provides "Perpetual Storage" and "Efficient Query Capability" to "See" "All" the "Changes" "Over Time", including when "Deletes" "Occur" and what "Updates" were "Made".
+# MAGIC * "<b>Change Data Feed</b>" is "<b>Not Enabled</b>" "<b>By Default</b>". The following "<b>Use Cases</b>" "<b>Drive</b>" "<b>When</b>" the "<b>Change Data Feed</b>" should be "<b>Enabled</b>".
+# MAGIC * A. <b>Silver and Gold Tables</b> - "<b>Improve</b>" the "<b>Delta Performance</b>" by "<b>Processing</b>" the "<b>Only Row-Level Changes</b>" following "<b>Initial</b>" "<b>MERGE</b>", "<b>UPDATE</b>", or "<b>DELETE</b>" Operations to "<b>Accelerate</b>" and "<b>Simplify</b>" the "<b>ETL</b>" and "<b>ELT</b>" Operations.
+# MAGIC * B. <b>Materialized Views</b> - "<b>Create</b>" the "<b>Up-To-Date</b>", "<b>Aggregated Views</b>" of "<b>Information</b>" for "<b>Use</b>" in "<b>BI</b>" and "<b>Analytics</b>" "<b>Without</b>" having to "<b>Re-Process</b>" the "<b>Full Underlying Tables</b>", Instead "<b>Updating</b>" only where "<b>Changes</b>" have "<b>Come Through</b>".
+# MAGIC * C. <b>Transmit Changes</b> - "<b>Send</b>" a "<b>Change Data Feed</b>" to "<b>Downstream Systems</b>", such as "<b>Kafka</b>" or "<b>RDBMS</b>" that can "<b>Use</b>" it to "<b>Incrementally Process</b>" in the "<b>Later Stages</b>" of "<b>Data Pipelines</b>".
+# MAGIC * D. <b>Audit Trail Table</b> - "<b>Capture</b>" the "<b>Change Data Feed</b>" as a "<b>Delta Table</b>" provides "<b>Perpetual Storage</b>" and "<b>Efficient Query Capability</b>" to "<b>See</b>" "<b>All</b>" the "<b>Changes</b>" "<b>Over Time</b>", including when "<b>Deletes</b>" "<b>Occur</b>" and what "<b>Updates</b>" were "<b>Made</b>".
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC # "Enable" the "Change Data Feed" on "New Table"
-# MAGIC * The "Change Data Feed" Option must be "Explicitly Enabled" on a "New Table" by "Using" the "Table Property" "<b>delta.enableChangeDataFeed = true</b>" in the "CREATE TABLE" Command.
+# MAGIC * The "<b>Change Data Feed</b>" Option must be "<b>Explicitly Enabled</b>" on a "<b>New Table</b>" by "<b>Using</b>" the "<b>Table Property</b>" "<b>delta.enableChangeDataFeed = true</b>" in the "<b>CREATE TABLE</b>" Command.
 
 # COMMAND ----------
 
@@ -133,7 +133,7 @@ df_ReadStudentCsvFiles.writeStream\
 
 # MAGIC %md
 # MAGIC # "Enable" the "Change Data Feed" on "Existing Table"
-# MAGIC * The "Change Data Feed" Option must be "Explicitly Enabled" on an "Existing Table" by "Using" the "Table Property" "<b>delta.enableChangeDataFeed = true</b>" in the "ALTER TABLE" Command.
+# MAGIC * The "<b>Change Data Feed</b>" Option must be "<b>Explicitly Enabled</b>" on an "<b>Existing Table</b>" by "<b>Using</b>" the "<b>Table Property</b>" "<b>delta.enableChangeDataFeed = true</b>" in the "<b>ALTER TABLE</b>" Command.
 
 # COMMAND ----------
 
@@ -146,7 +146,7 @@ df_ReadStudentCsvFiles.writeStream\
 
 # MAGIC %md
 # MAGIC # "Enable" the "Change Data Feed" on "All New Tables"
-# MAGIC * The "Change Data Feed" Option must be "Explicitly Enabled" on "All New Tables" by "Using" the "Spark Configuration" "<b>spark.databricks.delta.properties.defaults.enableChangeDataFeed = true</b>" in the "Cluster" Level, or, in "SparkSession".
+# MAGIC * The "<b>Change Data Feed</b>" Option must be "<b>Explicitly Enabled</b>" on "<b>All New Tables</b>" by "<b>Using</b>" the "<b>Spark Configuration</b>" "<b>spark.databricks.delta.properties.defaults.enableChangeDataFeed = true</b>" in the "<b>Cluster" Level</b>", or, in "<b>SparkSession</b>".
 
 # COMMAND ----------
 
@@ -157,30 +157,30 @@ spark.conf.set("spark.databricks.delta.properties.defaults.enableChangeDataFeed"
 
 # MAGIC %md
 # MAGIC # What is "Change Data Storage"?
-# MAGIC * "Databricks" "Records" the "Change in Data" for "UPDATE", "DELETE", and "MERGE" Operations in the "_change_data" Folder "Under" the "Delta Table" Directory.
-# MAGIC * These "Records" may be "Skipped" when "Databricks" "Detects" that the "Change Data Feed" can be Efficiently "Computed Directly" from the "Transaction Log". In particular, the "Insert-Only" Operations and the "Full Partition Deletes" will "Not Generate" any "Data" in the "_change_data" Directory.
-# MAGIC * The "Files" in the "_change_data" Folder "Follow" the "Retention Policy" of the "Table". Therefore, if the "VACUUM"  Command is "Run" on the "Table", the "Change Data Feed" Data is also "Deleted".
+# MAGIC * "<b>Databricks</b>" "<b>Records</b>" the "<b>Change in Data</b>" for "<b>UPDATE</b>", "<b>DELETE</b>", and "<b>MERGE</b>" Operations in the "<b>_change_data</b>" Folder "<b>Under</b>" the "<b>Delta Table</b>" Directory.
+# MAGIC * These "<b>Records</b>" may be "<b>Skipped</b>" when "<b>Databricks</b>" "<b>Detects</b>" that the "<b>Change Data Feed</b>" can be Efficiently "<b>Computed Directly</b>" from the "<b>Transaction Log</b>". In particular, the "<b>Insert-Only</b>" Operations and the "<b>Full Partition Deletes</b>" will "<b>Not Generate</b>" any "<b>Data</b>" in the "<b>_change_data</b>" Directory.
+# MAGIC * The "<b>Files</b>" in the "<b>_change_data</b>" Folder "<b>Follow</b>" the "<b>Retention Policy</b>" of the "<b>Table</b>". Therefore, if the "<b>VACUUM</b>" Command is "<b>Run</b>" on the "<b>Table</b>", the "<b>Change Data Feed</b>" Data is also "<b>Deleted</b>".
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC # Change Data Event Schema
-# MAGIC * In "Addition" to the "Data Columns", the "Change Data" "Contains" the "Metadata Columns" that "Identify" the "Type" of the "Change Event".
-# MAGIC * A. <b>_change_type</b>: This Column is of Data Type "String". The "Values" can be - "insert", "update_preimage", "update_postimage", or, "delete".
-# MAGIC * "preimage" is the "Value" that is "Before" the "Update".
-# MAGIC * "postimage" is the "Value" that is "After" the "Update".
-# MAGIC * B. <b>_commit_version</b>: This Column is of Data Type "Long". The "Value" is the "Delta Log", or, the "Table Version" "Containing" the "Change".
-# MAGIC * C. <b>_commit_timestamp</b>: This Column is of Data Type "Timestamp". The "Value" is the "Timestamp" that is "Associated" when the "Commit" was "Created".
+# MAGIC * In "<b>Addition</b>" to the "<b>Data Columns</b>", the "<b>Change Data</b>" "<b>Contains</b>" the "<b>Metadata Columns</b>" that "<b>Identify</b>" the "<b>Type</b>" of the "<b>Change Event</b>".
+# MAGIC * A. <b>_change_type</b>: This Column is of Data Type "<b>String</b>". The "<b>Values</b>" can be - "<b>insert</b>", "<b>update_preimage</b>", "<b>update_postimage</b>", or, "<b>delete</b>".
+# MAGIC * "<b>preimage</b>" is the "<b>Value</b>" that is "<b>Before</b>" the "<b>Update</b>".
+# MAGIC * "<b>postimage</b>" is the "<b>Value</b>" that is "<b>After</b>" the "<b>Update</b>".
+# MAGIC * B. <b>_commit_version</b>: This Column is of Data Type "<b>Long</b>". The "<b>Value</b>" is the "<b>Delta Log</b>", or, the "<b>Table Version</b>" "<b>Containing</b>" the "<b>Change</b>".
+# MAGIC * C. <b>_commit_timestamp</b>: This Column is of Data Type "<b>Timestamp</b>". The "<b>Value</b>" is the "<b>Timestamp</b>" that is "<b>Associated</b>" when the "<b>Commit</b>" was "<b>Created</b>".
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC # "Read" the "Changes" in "Batch Queries"
-# MAGIC * It is possible to "Provide" either the "Version" or the "Timestamp" for the "Start" and "End".
-# MAGIC * The "Start" and "End" "Versions" and the "Timestamps" are "Inclusive" in the "Queries".
-# MAGIC * To "Read" the "Changes" from a Particular "Start Version" to the "Latest Version" of the "Table", "Specify" Only the "Starting Version" or "Starting Timestamp".
-# MAGIC * The "Version" must be "Specified" as an "Integer" and the "Timestamps" must be "Specified" as a "String" in the Format "yyyy-MM-dd[ HH:mm:ss[.SSS]]".
-# MAGIC * If you provide a version lower or timestamp older than one that has recorded change events, that is, when the change data feed was enabled, an error is thrown indicating that the change data feed was not enabled.
+# MAGIC * It is possible to "<b>Provide</b>" either the "<b>Version</b>" or the "<b>Timestamp</b>" for the "<b>Start</b>" and "<b>End</b>".
+# MAGIC * The "<b>Start</b>" and "<b>End</b>" "<b>Versions</b>" and the "<b>Timestamps</b>" are "<b>Inclusive</b>" in the "<b>Queries</b>".
+# MAGIC * To "<b>Read</b>" the "<b>Changes</b>" from a Particular "<b>Start Version</b>" to the "<b>Latest Version</b>" of the "<b>Table</b>", "<b>Specify</b>" Only the "<b>Starting Version</b>" or "<b>Starting Timestamp</b>".
+# MAGIC * The "<b>Version</b>" must be "<b>Specified</b>" as an "<b>Integer</b>" and the "<b>Timestamps</b>" must be "<b>Specified</b>" as a "<b>String</b>" in the Format "<b>yyyy-MM-dd[ HH:mm:ss[.SSS]]</b>".
+# MAGIC * If a "<b>Version</b>", which is "<b>Lower</b>", or, a "<b>Timestamp</b>", which is "<b>Older</b>" than "<b>One</b>" that has "<b>Recorded</b>" the "<b>Change Events</b>" is "<b>Provided</b>", i.e., "<b>When</b>" the "<b>Change Data Feed</b>" was "<b>Enabled</b>", an "<b>Error</b>" is "<b>Thrown</b>" "<b>Indicating</b>" that the "<b>Change Data Feed</b>" was "<b>Not Enabled</b>".
 
 # COMMAND ----------
 
@@ -206,10 +206,10 @@ spark.conf.set("spark.databricks.delta.properties.defaults.enableChangeDataFeed"
 
 # MAGIC %md
 # MAGIC # "Read" the "Changes" in "Streaming Queries"
-# MAGIC * To "Get" the "Change Data" While "Reading" the "Delta Table", the Option "readChangeFeed" "Must" be "Set" to "True".
-# MAGIC * The "startingVersion" or "startingTimestamp" are "Optional" and "If Not Provided", the "Stream" "Returns" the "Latest Snapshot" of the "Delta Table" at the "Time" of "Streaming" as an "INSERT" and "Future Changes" as "Change Data".
-# MAGIC * "Options" like the "Rate Limits" ("maxFilesPerTrigger", "maxBytesPerTrigger") and "excludeRegex" are "Also Supported" When "Reading" the "Change Data".
-# MAGIC * "Rate Limits" can be "Atomic" for "Versions" "Other Than" the "Starting Snapshot Version". That is, the "Entire Commit Version" will be "Rate Limited" or the "Entire Commit" will be "Returned".
+# MAGIC * To "<b>Get</b>" the "<b>Change Data</b>" "<b>While Reading</b>" the "<b>Delta Table</b>", the Option "<b>readChangeFeed</b>" "<b>Must</b>" be "<b>Set</b>" to "<b>True</b>".
+# MAGIC * The "<b>startingVersion</b>" or "<b>startingTimestamp</b>" are "<b>Optional</b>" and "<b>If Not Provided</b>", the "<b>Stream</b>" "<b>Returns</b>" the "<b>Latest Snapshot</b>" of the "<b>Delta Table</b>" at the "<b>Time</b>" of "<b>Streaming</b>" as an "<b>INSERT</b>" and "<b>Future Changes</b>" as "<b>Change Data</b>".
+# MAGIC * "<b>Options</b>" like the "<b>Rate Limits</b>" ("<b>maxFilesPerTrigger</b>", "<b>maxBytesPerTrigger</b>") and "<b>excludeRegex</b>" are "<b>Also Supported</b>" "<b>When Reading</b>" the "<b>Change Data</b>".
+# MAGIC * "<b>Rate Limits</b>" can be "<b>Atomic</b>" for "<b>Versions</b>" "<b>Other Than</b>" the "<b>Starting Snapshot Version</b>". That is, the "<b>Entire Commit Version</b>" will be "<b>Rate Limited</b>" or the "<b>Entire Commit</b>" will be "<b>Returned</b>".
 
 # COMMAND ----------
 
@@ -254,8 +254,8 @@ display(spark.readStream.format("delta")\
 
 # MAGIC %md
 # MAGIC # "Error" is "Thrown" When "Starting Version" or "Starting Timestamp" "Exceeds" the "Last Commit" on a "Delta Table"
-# MAGIC * By Default, if a "User" "Passes" in a "Version" or "Timestamp" "Exceeding" the "Last Commit" on a "Delta Table", the "Errors" "VersionNotFoundException", or, "timestampGreaterThanLatestCommit" will be "Thrown".
-# MAGIC * "CDF" can "Handle" the "Out of Range" "Version Case", if the user sets the "Configuration" "<b>spark.databricks.delta.changeDataFeed.timestampOutOfRange.enabled</b>" to "<b>True</b>".
+# MAGIC * By Default, if a "<b>User</b>" "<b>Passes</b>" in a "<b>Version</b>" or "<b>Timestamp</b>" "<b>Exceeding</b>" the "<b>Last Commit</b>" on a "<b>Delta Table</b>", the "<b>Errors</b>" "<b>VersionNotFoundException</b>", or, "<b>timestampGreaterThanLatestCommit</b>" will be "<b>Thrown</b>".
+# MAGIC * "<b>CDF</b>" can "<b>Handle</b>" the "<b>Out of Range</b>" "<b>Version Case</b>", if the "<b>User</b>" "<b>Sets</b>" the "<b>Configuration</b>" "<b>spark.databricks.delta.changeDataFeed.timestampOutOfRange.enabled</b>" to "<b>True</b>".
 
 # COMMAND ----------
 
@@ -354,7 +354,7 @@ display(spark.readStream.format("delta")\
 
 # MAGIC %md
 # MAGIC # "Error" is "Thrown" When "Start Version" or "Start Timestamp" "Exceeds" the "Last Commit" on a "Delta Table" Even With "Spark Configuration"
-# MAGIC * If a "Start Version" is "Provided" which is "Greater Than" the "Last Commit" on a "Delta Table", or, a "Start Timestamp" is "Provided" that is "Newer Than" the "Last Commit" on a "Delta Table", then "When" the "Configuration" "<b>spark.databricks.delta.changeDataFeed.timestampOutOfRange.enabled</b>" is "Set" to "<b>True</b>", still the "Errors" "VersionNotFoundException", or, "timestampGreaterThanLatestCommit" will be "Thrown"..
+# MAGIC * If a "<b>Start Version</b>" is "<b>Provided</b>" which is "<b>Greater Than</b>" the "<b>Last Commit</b>" on a "<b>Delta Table</b>", or, a "<b>Start Timestamp</b>" is "<b>Provided</b>" that is "<b>Newer Than</b>" the "<b>Last Commit</b>" on a "<b>Delta Table</b>", then "<b>When</b>" the "<b>Configuration</b>" "<b>spark.databricks.delta.changeDataFeed.timestampOutOfRange.enabled</b>" is "<b>Set</b>" to "<b>True</b>", still the "<b>Errors</b>" "<b>VersionNotFoundException</b>", or, "<b>timestampGreaterThanLatestCommit</b>" will be "<b>Thrown</b>".
 
 # COMMAND ----------
 
@@ -432,7 +432,7 @@ display(spark.readStream.format("delta")\
 
 # MAGIC %md
 # MAGIC # "All" the "Changes" "Between" the "Start Version" and the "Last Commit" are "Returned" When "End Version" or "End Timestamp" "Exceeds" the "Last Commit" on a "Delta Table"
-# MAGIC * If an "End Version" is "Provided" which is "Greater Than" the "Last Commit" on a "Delta Table", or, an "End Timestamp" is "Provided" that is "Newer Than" the "Last Commit" on a "Delta Table", then "When" the "Configuration" "<b>spark.databricks.delta.changeDataFeed.timestampOutOfRange.enabled</b>" is "Set" to "<b>True</b>" in "<b>Batch Read</b>" Mode, "All" the "Changes" "Between" the "Start Version" and the "Last Commit" are to be "Returned".
+# MAGIC * If an "<b>End Version</b>" is "<b>Provided</b>" which is "<b>Greater Than</b>" the "<b>Last Commit</b>" on a "<b>Delta Table</b>", or, an "<b>End Timestamp</b>" is "<b>Provided</b>" that is "<b>Newer Than</b>" the "<b>Last Commit</b>" on a "<b>Delta Table</b>", then "<b>When</b>" the "<b>Configuration</b>" "<b>spark.databricks.delta.changeDataFeed.timestampOutOfRange.enabled</b>" is "<b>Set</b>" to "<b>True</b>" in "<b>Batch Read</b>" Mode, "<b>All</b>" the "<b>Changes</b>" "<b>Between</b>" the "<b>Start Version</b>" and the "<b>Last Commit</b>" are to be "<b>Returned</b>".
 
 # COMMAND ----------
 

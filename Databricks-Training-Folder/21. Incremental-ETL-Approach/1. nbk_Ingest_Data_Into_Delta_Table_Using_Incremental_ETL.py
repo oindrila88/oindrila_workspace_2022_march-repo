@@ -28,7 +28,7 @@
 
 # COMMAND ----------
 
-# DBTITLE 1,"Create" a Delta Table "students" Under the Database "training"
+# DBTITLE 1,"Create" a Delta Table "students_copy_into" Under the Database "training"
 # MAGIC %sql
 # MAGIC DROP TABLE IF EXISTS training.students_copy_into;
 # MAGIC 
@@ -44,9 +44,53 @@
 
 # COMMAND ----------
 
-# DBTITLE 1,Check the Data Present in the Delta Table
+# DBTITLE 1,"Create" a Delta Table "students_copy_into_with_metadata" Under the Database "training"
+# MAGIC %sql
+# MAGIC DROP TABLE IF EXISTS training.students_copy_into_with_metadata;
+# MAGIC 
+# MAGIC CREATE TABLE IF NOT EXISTS training.students_copy_into_with_metadata
+# MAGIC (
+# MAGIC     FirstName STRING,
+# MAGIC     MiddleName STRING,
+# MAGIC     LastName STRING,
+# MAGIC     Subject STRING,
+# MAGIC     Marks INT
+# MAGIC )
+# MAGIC USING DELTA;
+
+# COMMAND ----------
+
+# DBTITLE 1,"Create" a Delta Table "students_copy_into_with_inner_metadata" Under the Database "training"
+# MAGIC %sql
+# MAGIC DROP TABLE IF EXISTS training.students_copy_into_with_inner_metadata;
+# MAGIC 
+# MAGIC CREATE TABLE IF NOT EXISTS training.students_copy_into_with_inner_metadata
+# MAGIC (
+# MAGIC     FirstName STRING,
+# MAGIC     MiddleName STRING,
+# MAGIC     LastName STRING,
+# MAGIC     Subject STRING,
+# MAGIC     Marks INT
+# MAGIC )
+# MAGIC USING DELTA;
+
+# COMMAND ----------
+
+# DBTITLE 1,Check the Data Present in the Delta Table "students_copy_into"
 # MAGIC %sql
 # MAGIC SELECT * FROM training.students_copy_into;
+
+# COMMAND ----------
+
+# DBTITLE 1,Check the Data Present in the Delta Table "students_copy_into_with_metadata"
+# MAGIC %sql
+# MAGIC SELECT * FROM training.students_copy_into_with_metadata;
+
+# COMMAND ----------
+
+# DBTITLE 1,Check the Data Present in the Delta Table "students_copy_into_with_inner_metadata"
+# MAGIC %sql
+# MAGIC SELECT * FROM training.students_copy_into_with_inner_metadata;
 
 # COMMAND ----------
 
@@ -63,9 +107,62 @@ spark.sql(f"""COPY INTO {tableName}
 
 # COMMAND ----------
 
+# DBTITLE 1,"Load" the Data into the Delta Table Using "COPY INTO" SQL Command With Metadata Columns
+tableName = 'training.students_copy_into_with_metadata'
+sourceFileLocation = 'dbfs:/FileStore/tables/training/csv-files'
+sourceFileFormat = 'CSV'
+
+spark.sql(f"""COPY INTO {tableName}
+              FROM
+              (
+                  SELECT *,
+                  _metadata
+                  FROM '{sourceFileLocation}'
+              )
+              FILEFORMAT = {sourceFileFormat}
+              FORMAT_OPTIONS('MERGESCHEMA' = 'TRUE', 'HEADER' = 'TRUE', 'inferSchema' = 'TRUE')
+              COPY_OPTIONS('MERGESCHEMA' = 'TRUE')
+         """)
+
+# COMMAND ----------
+
+# DBTITLE 1,"Load" the Data into the Delta Table Using "COPY INTO" SQL Command With Each of the Supported Inner Metadata Columns
+tableName = 'training.students_copy_into_with_inner_metadata'
+sourceFileLocation = 'dbfs:/FileStore/tables/training/csv-files'
+sourceFileFormat = 'CSV'
+
+spark.sql(f"""COPY INTO {tableName}
+              FROM
+              (
+                  SELECT *,
+                  _metadata.file_path,
+                  _metadata.file_name,
+                  _metadata.file_size,
+                  _metadata.file_modification_time
+                  FROM '{sourceFileLocation}'
+              )
+              FILEFORMAT = {sourceFileFormat}
+              FORMAT_OPTIONS('MERGESCHEMA' = 'TRUE', 'HEADER' = 'TRUE', 'inferSchema' = 'TRUE')
+              COPY_OPTIONS('MERGESCHEMA' = 'TRUE')
+         """)
+
+# COMMAND ----------
+
 # DBTITLE 1,Drop the Table "training.students_copy_into"
 # MAGIC %sql
 # MAGIC DROP TABLE training.students_copy_into;
+
+# COMMAND ----------
+
+# DBTITLE 1,Drop the Table "training.students_copy_into_with_metadata"
+# MAGIC %sql
+# MAGIC DROP TABLE training.students_copy_into_with_metadata;
+
+# COMMAND ----------
+
+# DBTITLE 1,Drop the Table "training.students_copy_into_with_inner_metadata"
+# MAGIC %sql
+# MAGIC DROP TABLE training.students_copy_into_with_inner_metadata;
 
 # COMMAND ----------
 
@@ -151,6 +248,71 @@ df_ReadStudentCsvFiles = spark.readStream.format("cloudFiles")\
                                          .option("header", "true")\
                                          .schema(studentsDataSchema)\
                                          .load(sourceFileLocation)
+
+# COMMAND ----------
+
+# DBTITLE 1,"Read" the Data from the "Continuous Arriving CSV Files" from a "Directory" in "ADLS Gen2" With Metadata Columns
+from pyspark.sql.types import *
+
+sourceFileLocation = '/mnt/with-aad-app/databricks-training-folder/day-3/autoloader-csv-files'
+sourceFileFormat = 'CSV'
+
+# Create a "Schema" of the Data to be "Loaded" from the "Continuous Arriving CSV Files".
+studentsDataSchema = StructType([
+    StructField("FirstName", StringType(), False),
+    StructField("MiddleName", StringType(), True),
+    StructField("LastName", StringType(), False),
+    StructField("Subject", StringType(), False),
+    StructField("Marks", IntegerType(), False)
+])
+
+# Read the "Continuous Arriving CSV Files" from the Mounted Path "/mnt/with-aad-app/databricks-training-folder/day-3/autoloader-csv-files" Using "Auto Loader".
+df_ReadStudentCsvFiles = spark.readStream.format("cloudFiles")\
+                                         .option("cloudFiles.format", sourceFileFormat)\
+                                         .option("header", "true")\
+                                         .option("mergeSchema", "true")\
+                                         .schema(studentsDataSchema)\
+                                         .load(sourceFileLocation)\
+                                         .select(
+                                                    "*",
+                                                    "_metadata"
+                                                )
+
+display(df_ReadStudentCsvFiles)
+
+# COMMAND ----------
+
+# DBTITLE 1,"Read" the Data from the "Continuous Arriving CSV Files" from a "Directory" in "ADLS Gen2" With Each of the Supported Inner Metadata Columns
+from pyspark.sql.types import *
+
+sourceFileLocation = '/mnt/with-aad-app/databricks-training-folder/day-3/autoloader-csv-files'
+sourceFileFormat = 'CSV'
+
+# Create a "Schema" of the Data to be "Loaded" from the "Continuous Arriving CSV Files".
+studentsDataSchema = StructType([
+    StructField("FirstName", StringType(), False),
+    StructField("MiddleName", StringType(), True),
+    StructField("LastName", StringType(), False),
+    StructField("Subject", StringType(), False),
+    StructField("Marks", IntegerType(), False)
+])
+
+# Read the "Continuous Arriving CSV Files" from the Mounted Path "/mnt/with-aad-app/databricks-training-folder/day-3/autoloader-csv-files" Using "Auto Loader".
+df_ReadStudentCsvFiles = spark.readStream.format("cloudFiles")\
+                                         .option("cloudFiles.format", sourceFileFormat)\
+                                         .option("header", "true")\
+                                         .option("mergeSchema", "true")\
+                                         .schema(studentsDataSchema)\
+                                         .load(sourceFileLocation)\
+                                         .select(
+                                                    "*",
+                                                    "_metadata.file_path",
+                                                    "_metadata.file_name",
+                                                    "_metadata.file_size",
+                                                    "_metadata.file_modification_time"
+                                                )
+
+display(df_ReadStudentCsvFiles)
 
 # COMMAND ----------
 
