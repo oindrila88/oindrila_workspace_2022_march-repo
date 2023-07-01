@@ -8,24 +8,22 @@
 
 # DBTITLE 1,Read a CSV File Using "csv" method of "DataFrameReader" and Create a DataFrame
 df_ReadCustomerAddress = spark.read\
-                              .option("header", "true")\
-                              .option("sep", "|")\
-                              .option("inferSchema", "true")\
-                              .csv("dbfs:/FileStore/tables/retailer/data/customer_address.dat")
+                              .csv(path = "dbfs:/FileStore/tables/retailer/data/customer_address.dat", sep = "|", header = True, inferSchema = True)
 display(df_ReadCustomerAddress)
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC # What is a "View"?
-# MAGIC * A "View" is a "Virtual Table" that has no physical data based on the result-set of a SQL query on which the "View" is created.
+# MAGIC * A "<b>View</b>" is a "<b>Virtual Table</b>" that has "<b>No Physical Data</b>".
+# MAGIC * A "<b>View</b>" is "<b>Created</b>" based on the "<b>Result-Set</b>" of a "<b>SQL Query</b>".
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC # What is a "Temporary View"?
-# MAGIC * "TEMPORARY Views" are "Session-Scoped" and is "Dropped" when the "Session" ends because it "Skips Persisting the Definition" in the underlying "Metastore", if any.
-# MAGIC * "TEMPORARY Views" are "Scoped" to the "Notebook" or "Script" level. Hence, "TEMPORARY Views" cannot be referenced "Outside of the Notebook" in which those are "Declared", and will no longer exist when the "Notebook" detaches from the "Cluster".
+# MAGIC * A "<b>Temporary View</b>" is "<b>Session-Scoped</b>" and is "<b>Dropped</b>" when the "<b>Session Ends</b>", because the "<b>Definition</b>" of the "<b>Temporary View</b>" is "<b>Not Stored</b>" in the underlying "<b>Metastore</b>", if any.
+# MAGIC * A "<b>Temporary View</b>" is "<b>Scoped</b>" to the "<b>Notebook</b>" level. Hence, a A "<b>Temporary View</b>" can "<b>Not be Referenced Outside of the Notebook in which it is Declared</b>", and will "<b>No Longer Exist</b>" when the "<b>Notebook Detaches from the Cluster</b>".
 
 # COMMAND ----------
 
@@ -33,11 +31,11 @@ display(df_ReadCustomerAddress)
 # MAGIC # How to Create a "Temporary View"?
 # MAGIC * 1. <b>createTempView</b>: The "<b>createTempView()</b>" Method is the "Simplest Way" to "Create" a "<b>Temporary View</b>" that "Later" can be "Used" to "Query" the "Data".
 # MAGIC <br>The "<b>createTempView()</b>" Method "Takes" Only the "<b>Name</b>" of the "<b>View</b>" to be "Created" as the "<b>Parameter</b>".
-# MAGIC <br>If the "<b>View Name</b> "<b>Already Exists</b>" in the "Current Session", the "<b>createTempView()</b>" Method Throws the "<b>TempTableAlreadyExistsException</b>" Exception.
+# MAGIC <br>If the "<b>View Name</b>" "<b>Already Exists</b>" in the "<b>Current Session</b>", the "<b>createTempView()</b>" Method Throws the "<b>TempTableAlreadyExistsException</b>" Exception.
 # MAGIC <br><br>
 # MAGIC * 2. <b>createOrReplaceTempView</b>: The "<b>createOrReplaceTempView()</b>" Method "<b>Creates</b>" a "<b>New</b>" <b>Temporary View</b>", or, "<b>Replaces</b>" the "<b>Definition</b>" of an "<b>Already Existing View</b>" that "Later" can be "Used" to "Query" the "Data".
 # MAGIC <br>The "<b>createOrReplaceTempView()</b>" Method also "Takes" Only the "<b>Name</b>" of the "<b>View</b>" to be "Created" as the "<b>Parameter</b>".
-# MAGIC <br>If the "<b>View Name</b> "<b>Already Exists</b>" in the "Current Session", the "<b>createOrReplaceTempView()</b>" Method just "<b>Replaces</b>" the "<b>Definition</b>" of that "<b>Already Existing View</b>".
+# MAGIC <br>If the "<b>View Name</b>" "<b>Already Exists</b>" in the "<b>Current Session</b>", the "<b>createOrReplaceTempView()</b>" Method just "<b>Replaces</b>" the "<b>Definition</b>" of that "<b>Already Existing View</b>".
 
 # COMMAND ----------
 
@@ -58,7 +56,7 @@ df_ReadCustomerAddress.select("ca_address_sk", "ca_address_id", "ca_street_numbe
 
 # DBTITLE 1,Use Magic Command "%sql" to Execute SQL Queries Directly in the Notebook
 # MAGIC %sql
-# MAGIC 
+# MAGIC
 # MAGIC SELECT * FROM v_temp_customerAddress
 
 # COMMAND ----------
@@ -77,9 +75,10 @@ display(spark.sql("SELECT * FROM v_temp_AK_Addresses"))
 
 # MAGIC %md
 # MAGIC # What is a "Global Temporary View"?
-# MAGIC * "GLOBAL TEMPORARY Views" are also "Session-Scoped" and is "Dropped" when the "Session" ends because it "Skips Persisting the Definition" in the underlying "Metastore", if any. "GLOBAL TEMPORARY Views" are "Tied" to a System Preserved Temporary Schema "global_temp".
-# MAGIC * "GLOBAL TEMPORARY Views" are "Scoped" to the "Cluster" level and can be "Shared" between "Notebooks" or "Jobs" that "Share Computing Resources".
-# MAGIC * Databricks recommends using "Views" with appropriate "Table ACLs" instead of "GLOBAL TEMPORARY Views".
+# MAGIC * A "<b>Global Temporary View</b>" is also "<b>Session-Scoped</b>" and is "<b>Dropped</b>" when the "<b>Session Ends</b>", because the "<b>Definition</b>" of the "<b>Global Temporary View</b>" is "<b>Not Stored</b>" in the underlying "<b>Metastore</b>", if any.
+# MAGIC * "<b>Global Temporary Views</b>" are "<b>Tied</b>" to a "<b>System Preserved Temporary Schema</b>", called "<b>global_temp</b>".
+# MAGIC * A "<b>Global Temporary View</b>" is "<b>Scoped</b>" to the "<b>Cluster</b>" level, and, can be "<b>Shared</b>" between the "<b>Notebooks</b>" or "<b>Jobs</b>" that "<b>Share</b>" the "<b>Computing Resources</b>" of that "<b>Cluster</b>".
+# MAGIC * "<b>Databricks</b>" recommends using "<b>Views</b>" with "<b>Appropriate Table ACLs</b>", instead of "<b>Global Temporary Views</b>".
 
 # COMMAND ----------
 
@@ -105,7 +104,7 @@ display(spark.sql("show views in global_temp"))
 
 # MAGIC %md
 # MAGIC # "Temporary View" and "Global Temporary View" of the "Same Name"
-# MAGIC * It is possible to "Create" a "Temporary View" and a "Global Temporary View" of the "Same Name" in the "Same Spark Session".
+# MAGIC * It is possible to "<b>Create</b>" a "<b>Temporary View</b>" and a "<b>Global Temporary View</b>" of the "<b>Same Name</b>" in the "<b>Same Spark Session</b>", because, the "<b>Global Temporary View</b>" will be "<b>Stored</b>" in the "<b>System Preserved Temporary Schema</b>", called "<b>global_temp</b>", whereas, the "<b>Temporary View</b>" will be "<b>Stored</b>" in either the "<b>Database</b>" named "<b>default</b>", or, in the "<b>Database</b>", which will be provided with the "<b>Name</b>" of the "<b>Temporary View</b>" as the "<b>Schema</b>" of the "<b>Temporary View</b>".
 
 # COMMAND ----------
 
@@ -117,10 +116,3 @@ df_ReadCustomerAddress.createTempView("gv_temp_customerAddress")
 
 # DBTITLE 1,Perform a Simple SELECT Query on the Created View
 display(spark.sql("SELECT * FROM gv_temp_customerAddress"))
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC # What is a "Materialized View"?
-# MAGIC * When the "Results" of a "View Expression" are "Stored" in a "Database System", those are called "Materialized Views".
-# MAGIC * "Spark SQL" also supports "Materialized Views" by "Caching" hot data in "Memory". It can be available without concerning about updates because DataFrames are "Read Only". When a user call "cache()" on a DataFrame, it will try to keep the value of this "DataFrame" in memory if possible, when this DataFrame is being materialized.
