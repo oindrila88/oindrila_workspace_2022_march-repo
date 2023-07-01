@@ -169,3 +169,42 @@ dbutils.fs.refreshMounts()
 # DBTITLE 1,"Unmount" a "Mounted" Path
 # The "dbutils.fs.unmount()" Command "Deletes" a "DBFS Mount Point".
 dbutils.fs.unmount("/mnt/with-sas-key/")
+
+# COMMAND ----------
+
+# DBTITLE 1,"Mount" a "Container" of "ADLS Gen2" Using "SAS Key" Via "Azure Key Vault-Backed Secret Scope"
+storageAccountName = "adlsoindrila2022march"
+containerName = "databrcks-training-container"
+kvSecretForFullSAS = dbutils.secrets.get("kv-oindrila-2022-march-secret-scope", "kv-secret-for-adlsoindrila2022march-sas-key")
+print(kvSecretForFullSAS)
+
+#If the "SAS Key" Starts with "https", i.e., If the Key is Actually "SAS Blob URL"
+if kvSecretForFullSAS.startswith("https"):
+    kvSecretForSAS = kvSecretForFullSAS[kvSecretForFullSAS.find('?')+1:]
+elif kvSecretForFullSAS.startswith("?"):
+    kvSecretForSAS = kvSecretForFullSAS
+print(kvSecretForSAS)
+
+sasKeyMountPoint = "/mnt/with-sas-key/databrcks-training-container"
+
+config = {
+    "fs.azure.account.auth.type": "SAS",
+    "fs.azure.sas.token.provider.type": "org.apache.hadoop.fs.azurebfs.sas.FixedSASTokenProvider",
+    "fs.azure.sas.fixed.token": kvSecretForSAS
+}
+
+# Determine If the "Mount Point" is Not Already Mounted
+for mount in dbutils.fs.mounts():
+    ifMountPointExists = (mount.mountPoint == sasKeyMountPoint)
+    if ifMountPointExists:
+        print(f"Mount Point '{sasKeyMountPoint}' Using SAS Key Already Exists")
+        break
+        
+# Create the "Mount Point", If It Does Not Exists
+if not ifMountPointExists:
+    print(f"Creating the Mount Point 'sasKeyMountPoint' Using SAS Key")
+    dbutils.fs.mount(
+         source = f"abfss://{containerName}@{storageAccountName}.dfs.core.windows.net",
+         mount_point = sasKeyMountPoint,
+         extra_configs = config | {"fs.azure.sas.fixed.token.lafadlspltest.dfs.core.windows.net": kvSecretForSAS}
+    )

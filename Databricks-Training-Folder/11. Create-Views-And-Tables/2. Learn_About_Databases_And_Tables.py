@@ -44,7 +44,7 @@ spark.sql("USE retailer_db")
 
 # COMMAND ----------
 
-# DBTITLE 1,Delete a Database
+# DBTITLE 1,Delete a Non-Empty Database Using "CASCADE"
 spark.sql("DROP DATABASE retailer_db CASCADE")
 
 # COMMAND ----------
@@ -61,12 +61,29 @@ spark.sql("DROP DATABASE retailer_db CASCADE")
 
 # MAGIC %md
 # MAGIC # What is a "Table"?
-# MAGIC * A Databricks "Table" is a "Collection" of "Structured Data".
+# MAGIC * A "<b>Databricks Table</b>" is a "<b>Collection</b>" of "<b>Structured Data</b>".
+# MAGIC * All "<b>Tables</b>" created in "<b>Databricks</b>" are "<b>Delta Tables</b>", by default.
 # MAGIC * In DBFS, the "Data" of the created "Managed Table" is Stored in the Path - "/user/hive/warehouse/'database-name.db'/'table-name'/'part-files'", if LOCATION is Not specified.
-# MAGIC * There are two kinds of "Tables" in "Databricks" -
-# MAGIC * A. Managed Tables
-# MAGIC * B. Unmanaged or External Tables
-# MAGIC * All "Tables" created in "Databricks" are "Delta Tables", by default.
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC # Different Types of "Table" in "Databricks"
+# MAGIC * At a broader level, there are "<b>Two Types</b>" of "<b>Tables</b>" in "<b>Databricks</b>" -
+# MAGIC * 1. <b>Local Table</b> -
+# MAGIC   * A "<b>Local Table</b>", which is "<b>Created</b>" in a "<b>Cluster</b>", is "<b>Not Accessible</b>" from "<b>Other Clusters</b>", and, is "<b>Not Registered</b>" in the "<b>Hive Metastore</b>".
+# MAGIC   * A "<b>Local Table</b>" is also known as a "<b>Temporary View</b>", which is "<b>Created</b>" using the "<b>createTempView ()</b>" Method, or, the "<b>createOrReplaceTempView ()</b>" Method of a "<b>DataFrame</b>".
+# MAGIC * 2. <b>Global Table</b> -
+# MAGIC   * A "<b>Global Table</b>" is "<b>Available</b>" across "<b>All</b>" the "<b>Clusters</b>".
+# MAGIC   * "<b>Databricks</b>" "<b>Registers</b>" the "<b>Global Tables</b>" either to the "<b>Databricks Hive Metastore</b>", or, to an "<b>External Hive Metastore</b>".
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC # Different Types of "Global Tables" in "Databricks"
+# MAGIC * There are "<b>Two Types</b>" of "<b>Global Table</b>" in "<b>Databricks</b>" -
+# MAGIC   * A. <b>Managed Tables</b>
+# MAGIC   * B. <b>Unmanaged</b> or <b>External Tables</b>
 
 # COMMAND ----------
 
@@ -97,19 +114,17 @@ display(spark.sql("SHOW TABLES IN retailer_db"))
 
 # MAGIC %md
 # MAGIC # What is an "Unmanaged Table" or "External Table"?
-# MAGIC * Databricks only "Manages" the "Metadata" for the "Unmanaged" or "External" Tables.
-# MAGIC * When an "Unmanaged" or "External" Table is "Dropped", the "Underlying Data" is "Not Affected".
-# MAGIC * "Unmanaged" or "External" Tables will always specify a LOCATION during the "Table Creation".
-# MAGIC * Either an "Existing Directory of Data Files" can be "Registered"  as an "Unmanaged" or "External" Table or a "Path" can be provide  when an "Unmanaged" or "External" Table is first defined.
-# MAGIC * Because "Data" and "Metadata" are "Managed Independently", it is possible to "Rename" an "Unmanaged" or "External" Table or "Register" an "Unmanaged" or "External" Table to a "New Database" without needing to move any "Data".
-# MAGIC * "Data Engineers" often prefer "Unmanaged" or "External" Tables and the flexibility these provide for "Production Data".
+# MAGIC * An "<b>Unmanaged Table</b>" is a "<b>Spark SQL Table</b>" for which "<b>Apache Spark</b>" "<b>Manages</b>" only the "<b>MetadaData</b>", while, the "<b>Users</b>" "<b>Control</b>" the "<b>Data Location</b>".
+# MAGIC * In case of an "<b>Unmanaged Table</b>", since "<b>Apache Spark</b>" "<b>Manages</b>" only the "<b>Relevant MetadaData</b>", in that case, when an "<b>Unmanaged Table</b>" is "<b>Dropped</b>", then "<b>Apache Spark</b>" will only "<b>Delete</b>" the "<b>Metadata</b>", and, "<b>Not</b>" the "<b>Data</b>" of the "<b>Unmanaged Table</b>". The "<b>Data</b>" of the "<b>Unmanaged Table</b>" would be "<b>Still Present</b>" in the "<b>Provided Path</b>".
+# MAGIC * When an "<b>Unmanaged Table</b>" is "<b>Created</b>", a "<b>LOCATION</b>" must be provided. The "<b>LOCATION</b>" can be either an "<b>Existing Directory of Data Files</b>" , or, an "<b>Empty Path</b>" can be provided.
+# MAGIC * Because the "<b>Data</b>" and the "<b>Metadata</b>" are "<b>Managed Independently</b>", it is possible to "<b>Rename</b>" an "<b>Unmanaged Table</b>", or "<b>Register</b>" an "<b>Unmanaged Table</b>" to a "<b>New Database</b>" "<b>Without Moving</b>" any "<b>Data</b>".
 
 # COMMAND ----------
 
 # DBTITLE 1,Create External Table from CSV Using Spark SQL By Providing Column Names and Data Types in DDL
 # MAGIC %sql
 # MAGIC CREATE DATABASE IF NOT EXISTS retailer_db;
-# MAGIC 
+# MAGIC
 # MAGIC CREATE TABLE IF NOT EXISTS retailer_db.tbl_CustomerDatFileWithDdl
 # MAGIC (
 # MAGIC     c_customer_sk LONG,
@@ -144,7 +159,7 @@ display(spark.sql("SHOW TABLES IN retailer_db"))
 # DBTITLE 1,Create External Table from CSV Using Spark SQL By Not Providing Column Names and Data Types in DDL
 # MAGIC %sql
 # MAGIC CREATE DATABASE IF NOT EXISTS retailer_db;
-# MAGIC 
+# MAGIC
 # MAGIC CREATE TABLE IF NOT EXISTS retailer_db.tbl_CustomerDatFileWithoutDdl
 # MAGIC USING csv
 # MAGIC OPTIONS
@@ -159,7 +174,7 @@ display(spark.sql("SHOW TABLES IN retailer_db"))
 # DBTITLE 1,Create External Table from JSON Using Spark SQL By Not Providing Column Names and Data Types in DDL
 # MAGIC %sql
 # MAGIC CREATE DATABASE IF NOT EXISTS retailer_db;
-# MAGIC 
+# MAGIC
 # MAGIC CREATE TABLE IF NOT EXISTS retailer_db.tbl_SingleLineJsonFileWithoutDdl
 # MAGIC USING json
 # MAGIC LOCATION  'dbfs:/FileStore/tables/retailer/data/single_line.json'
@@ -203,7 +218,7 @@ display(spark.sql("SHOW TABLES IN retailer_db"))
 # MAGIC     sep '|',
 # MAGIC     header true
 # MAGIC )
-# MAGIC 
+# MAGIC
 # MAGIC /* Duplicated table paths found: 'dbfs:/customTablePath' and 'dbfs:/FileStore/tables/retailer/data/customer.dat'. LOCATION and the case insensitive key 'path' in OPTIONS are all used to indicate the custom table path, you can only specify one of them. - This "Exception" will be thrown.
 
 # COMMAND ----------
@@ -306,11 +321,10 @@ df_ReadCustomerFileUsingCsv.write\
 
 # MAGIC %md
 # MAGIC # What is a "Managed Table"?
-# MAGIC * Databricks "Manages" both the "Metadata" and the "Data" for a "Managed Table".
-# MAGIC * When a "Managed Table" is "Dropped", the "Underlying Data" is also "Deleted". "Data Analysts" and other "Users" that mostly work in SQL may prefer this behavior.
-# MAGIC * "Managed Tables" are the "Default" when creating a "Table".
-# MAGIC * The "Data" for a "Managed Table" resides in the LOCATION of the "Database" it is "Registered To".
-# MAGIC * This "Managed Relationship" between the "Data Location" and the "Database" means that in order to "Move" a "Managed Table" to a "New Database", "All Data" must be "Rewritten" to the "New Location".
+# MAGIC * A "<b>Managed Table</b>" is a "<b>Spark SQL Table</b>" for which "<b>Apache Spark</b>" "<b>Manages</b>" both the "<b>Data</b>", and, the "<b>Metadata</b>".
+# MAGIC * In the case of "<b>Managed Table</b>", "<b>Databricks</b>" "<b>Stores</b>" the "<b>Data</b>", and, the "<b>Metadata</b>" in the "<b>DBFS</b>" of the "<b>User's Account</b>".
+# MAGIC * Since "<b>Apache Spark</b>" "<b>Manages</b>" both the "<b>Data</b>", and, the "<b>Metadata</b>" of a "<b>Managed Table</b>", "<b>Dropping</b>" the "<b>Managed Table</b>" will "<b>Delete</b>" both the "<b>Data</b>", and, the "<b>Metadata</b>".
+# MAGIC * "<b>Managed Tables</b>" are the "<b>Default</b>" when "<b>Creating</b>" a "<b>Table</b>" in "<b>Databricks</b>".
 
 # COMMAND ----------
 
@@ -368,7 +382,7 @@ display(spark.sql("select * from retailer_db.tbl_ManagedCustomerAddress"))
 # MAGIC     ca_gmt_offset STRING,
 # MAGIC     ca_location_type STRING
 # MAGIC );
-# MAGIC 
+# MAGIC
 # MAGIC SELECT * FROM retailer_db.tbl_ManagedCustomerWithAddress
 
 # COMMAND ----------
@@ -376,7 +390,7 @@ display(spark.sql("select * from retailer_db.tbl_ManagedCustomerAddress"))
 # DBTITLE 1,Load Data Into the Created "Empty Managed Table"
 # MAGIC %sql
 # MAGIC TRUNCATE TABLE retailer_db.tbl_ManagedCustomerWithAddress;
-# MAGIC 
+# MAGIC
 # MAGIC INSERT INTO retailer_db.tbl_ManagedCustomerWithAddress
 # MAGIC SELECT      ca_address_sk,
 # MAGIC             ca_address_id,
@@ -391,11 +405,11 @@ display(spark.sql("select * from retailer_db.tbl_ManagedCustomerAddress"))
 # MAGIC             ca_country,
 # MAGIC             ca_gmt_offset,
 # MAGIC             ca_location_type
-# MAGIC 
+# MAGIC
 # MAGIC FROM        retailer_db.tbl_ManagedCustomerAddress MCA
 # MAGIC INNER JOIN  retailer_db.tbl_CustomerDatFile CDF
 # MAGIC ON          MCA.ca_address_sk = CDF.c_current_addr_sk;
-# MAGIC 
+# MAGIC
 # MAGIC SELECT * FROM retailer_db.tbl_ManagedCustomerWithAddress
 
 # COMMAND ----------
